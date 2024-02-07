@@ -1,4 +1,5 @@
 <?php
+include("header.php");
 echo "
 <html lang='en'>
   <head>
@@ -37,7 +38,7 @@ echo "
 
     	</div>
     </main>
-	<script src='index.js'></script>
+	
   </body>
 </html>";
 ?>
