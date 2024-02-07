@@ -1,0 +1,29 @@
+{
+  "name": "My awesome PWA",
+  "short_name": "My PWA",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "lang":"en-US",
+  "dir":"ltr",
+  "orientation":"portrait",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
+}
