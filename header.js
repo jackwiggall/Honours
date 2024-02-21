@@ -1,5 +1,8 @@
-<?php
-echo "
+import React from 'react';
+
+function Header() {
+return (
+<>
 <html lang='en'>
   <head>
     <meta charset='UTF-8'>
@@ -14,5 +17,14 @@ echo "
   </head>
   <body>
     <main>
-    	<div class='bground'>";
-  ?>
+    	<div className='bground'>
+
+      </div>
+      </div>
+    </main>
+  </body>
+</html>
+</>
+    )
+    }
+export default Header;
