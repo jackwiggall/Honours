@@ -27,7 +27,7 @@ body:after {
   position: absolute;
   top: 0;
   left: 0;
-  background: url('https://www.toptal.com/designers/subtlepatterns/uploads/45degreee_fabric.png');
+  background: #FFB4A2; /**had to remove textured bg as no work in React**/
   width: 100%;
   height: 100%;
   opacity: 0.5;
