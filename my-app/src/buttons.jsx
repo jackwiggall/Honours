@@ -2,8 +2,7 @@ import React from 'react';
 
 function Buttons() {
 return (
-{/*include("header.php");*/}
-      	{/*<!-- Page content -->*/}
+<>
         <div className='d-block w-100' style='text-align:right;'>
           <p style='text-align:left;' className='d-inline float-left m-2 ml-3'>LoA / Create</p>
           <button className='btn mb-1' type='button' onclick='location.href=`library.js`'>Close <i class='fa-solid fa-xmark'></i></button>
@@ -31,11 +30,7 @@ return (
 
         <button className='btn btn-primary w-100 my-2 my-sm-0 mr-1' type='button' onClick='alert(`You cannot publish yet!`)'>Publish</button>
 
-    	</div>
-    </main>
-
-  </body>
-</html>
+    </>
 )
 }
 

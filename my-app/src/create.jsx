@@ -2,8 +2,7 @@ import React from 'react';
 
 function Create() {
 return (
-{/*include("header.php");*/}
-      	{/*<!-- Page content -->*/}
+<>
         <div className='d-block w-100' style='text-align:right;'>
           <p style='text-align:left;' className='d-inline float-left m-2 ml-3'>LoA / Create</p>
           <button className='btn mb-1' type='button' onClick='location.href=`library.js`'>Close <i className='fa-solid fa-xmark'></i></button>
@@ -36,11 +35,7 @@ return (
 
         <button className='btn btn-primary w-100 my-2 my-sm-0 mr-1' type='submit' onClick='location.href=`buttons.php`'>Submit</button>
 
-    	</div>
-    </main>
-
-  </body>
-</html>
+    </>
 )
 }
 

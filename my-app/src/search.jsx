@@ -7,11 +7,10 @@ function toggleFilters() {
 
 function Search() {
 return (
-{/*include("header.php");*/}
-      	{/*<!-- Page content -->*/}
+    <>
         <div className='d-block w-100' style='text-align:right;'>
           <p style='text-align:left;' class='d-inline float-left m-2 ml-3'>LoA / Search</p>
-          <button className='btn mb-1' type='button' onClick='location.href=`index.js`'>Close <i className='fa-solid fa-xmark'></i></button>
+          <button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark'></i></button>
         </div>
 
       <div className='box'>
@@ -41,7 +40,6 @@ return (
 
 
       <div className='results'>
-      {/* <!--Search Results, will need to do resizing stuff--> */}
 
       <div className='card' style='width: 100%; margin-bottom:20px'>
         <a href='info.php'><img src='C:\Users\jackw\Pictures\Screenshots\Screenshot 2023-11-27 212356.png' class='card-img-top' alt='...'/>
@@ -53,12 +51,8 @@ return (
           <li className='list-group-item'>#fantasy, #sci-fi</li>
         </ul>
       </div>
-    </div>
-
-    	</div>
-    </main>
-  </body>
-</html>
+      </div>
+    </>
 )
 }
 

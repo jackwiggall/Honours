@@ -2,8 +2,7 @@ import React from 'react';
 
 function Info() {
 return (
-  {/*include("header.php");*/}
-          {/*<!-- Page content -->*/}
+<>
         <div className='d-block w-100' style='text-align:right;'>
           <p style='text-align:left;' className='d-inline float-left m-2 ml-3'>User / Game</p>
           <button className='btn mb-1' type='button' onClick='location.href=`search.js`'>Close <i className='fa-solid fa-xmark'></i></button>
@@ -18,15 +17,16 @@ return (
           <h4 className='d-inline-block float-right'> 2 <i className='fa-solid fa-eye'></i> {/*<!--Views-->*/}
           3 <i className='fa-solid fa-heart'></i> {/*<!--Likes-->*/}
           1 <i className='fa-solid fa-comment'></i></h4> {/*<!--Comments-->*/}
-          <p>By: User</p><!--Creator-->
-          <p>In a world where lorem ipsum, a legendary lorem commits to filling out this description.</p><!--description-->
-          <p>#tags #cool #mystery</p><!--tag list-->
+          <p>By: User</p>
+          <p>In a world where lorem ipsum, a legendary lorem commits to filling out this description.</p>
+          <p>#tags #cool #mystery</p>
         </div>
 
         <div className='box'>
           <form className='form-inline'>
             <input className='form-control mr-sm-2 w-75' type='comment' placeholder='Comment' required aria-label='Comment' />
             <button className='btn btn-primary my-2 my-sm-0 mr-1' type='button'>Comment <i class='fa-solid fa-comment'></i></button>
+            </form>
         </div>
 
         <div className='box'>
@@ -44,11 +44,7 @@ return (
           </div>
         </div>
 
-    	</div>
-    </main>
-
-  </body>
-</html>
+    	</>
 )
 }
 export default Info;
