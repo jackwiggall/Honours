@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Create() {
 return (
 <>
-        <div className='d-block w-100' style='text-align:right;'>
-          <p style='text-align:left;' className='d-inline float-left m-2 ml-3'>LoA / Create</p>
-          <button className='btn mb-1' type='button' onClick='location.href=`library.js`'>Close <i className='fa-solid fa-xmark'></i></button>
+  <div className='bground'>
+    <div className='d-block w-100' style={{textAlign: "right"}}>
+      <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library</p>
+      <Link to={"../Library"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
         </div>
 
         <div className='box'>
@@ -33,8 +35,9 @@ return (
             </select>
         </div>
 
-        <button className='btn btn-primary w-100 my-2 my-sm-0 mr-1' type='submit' onClick='location.href=`buttons.php`'>Submit</button>
+        <Link to={"Buttons"}><button className='btn btn-primary w-100 my-2 my-sm-0 mr-1' type='submit'>Submit</button></Link>
 
+    </div>
     </>
 )
 }

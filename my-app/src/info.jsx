@@ -1,15 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Info() {
 return (
 <>
-        <div className='d-block w-100' style='text-align:right;'>
-          <p style='text-align:left;' className='d-inline float-left m-2 ml-3'>User / Game</p>
-          <button className='btn mb-1' type='button' onClick='location.href=`search.js`'>Close <i className='fa-solid fa-xmark'></i></button>
-        </div>
+<div className='bground'>
+  <div className='d-block w-100' style={{textAlign: "right"}}>
+    <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library</p>
+    <Link to={"../search"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
+      </div>
 
         <div className='box'>
-          <img src='C:\Users\jackw\Pictures\Screenshots\Screenshot 2023-11-27 212356.png' style='max-width:100%;' alt='...' />
+          <img src='C:\Users\jackw\Pictures\Screenshots\Screenshot 2023-11-27 212356.png' style={{maxWidth: '100%'}} alt='...' />
         </div>
 
         <div className='box'>
@@ -33,7 +35,7 @@ return (
           <div className='container'>
             <div className='row'>
               <div className='col-sm-2'>
-                <img src='C:\Users\jackw\Videos\Books\skyward_square.jpg' style='width:100%;aspect-ratio : 1 / 1;' alt='...' />
+                <img src='C:\Users\jackw\Videos\Books\skyward_square.jpg' style={{width: '100%', aspectRatio: '1 / 1'}} alt='...' />
                 <b className='text-center'>User</b>
               </div>
               <div className='col-7'>
@@ -44,6 +46,7 @@ return (
           </div>
         </div>
 
+      </div>
     	</>
 )
 }

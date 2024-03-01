@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function toggleFilters() {
 
@@ -8,10 +9,11 @@ function toggleFilters() {
 function Search() {
 return (
     <>
-        <div className='d-block w-100' style='text-align:right;'>
-          <p style='text-align:left;' class='d-inline float-left m-2 ml-3'>LoA / Search</p>
-          <button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark'></i></button>
-        </div>
+    <div className='bground'>
+      <div className='d-block w-100' style={{textAlign: "right"}}>
+        <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library</p>
+        <Link to={"../"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
+          </div>
 
       <div className='box'>
         <form className='form-inline'>
@@ -26,7 +28,7 @@ return (
           </select>
 
 
-          <button type='button' className='btn btn-primary my-2 my-sm-0' onClick='toggleFilters()'>Filter <i className='fa-solid fa-filter'></i></button>
+          <button type='button' className='btn btn-primary my-2 my-sm-0' onClick={'toggleFilters()'}>Filter <i className='fa-solid fa-filter'></i></button>
           <div id='filters' className='hidden m-2'>
             <select className='custom-select mr-sm-2' id='inlineFormCustomSelect'>
               <option selected>Genre</option>
@@ -41,9 +43,9 @@ return (
 
       <div className='results'>
 
-      <div className='card' style='width: 100%; margin-bottom:20px'>
-        <a href='info.php'><img src='C:\Users\jackw\Pictures\Screenshots\Screenshot 2023-11-27 212356.png' class='card-img-top' alt='...'/>
-        </a><div className='card-body'>
+      <div className='card' style={{width: '100%', marginBottom: '20px'}}>
+        <Link to={"./Info"}> <img src='C:\Users\jackw\Pictures\Screenshots\Screenshot 2023-11-27 212356.png' class='card-img-top' alt='...'/>
+        </Link><div className='card-body'>
           <h5 className='card-title'>Card title</h5>
           <p className='card-text d-inline-block'>Brief description of the project.</p>
         </div>
@@ -52,6 +54,8 @@ return (
         </ul>
       </div>
       </div>
+
+    </div>
     </>
 )
 }

@@ -5,23 +5,25 @@ import { Link } from 'react-router-dom';
 function Home() {
 return (
     <>
+    <div className='bground'>
     		<h1 className='centre'>Welcome to the Library of Alexandria</h1>
     		<img src='C:\Users\jackw\Pictures\2023.png' className='centre'/>
         <h2 className='centre' style={{marginTop: "5px"}}>Which would you to do?</h2>
         <div class='centre'>
 
           <div class='box'>
-    			     <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' ><Link to={"./Search"}>Read</Link></button>
+    			     <Link to={"./Search"}> <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Read</button></Link>
           </div>
 
           <h2>OR</h2>
 
           <div class='box'>
-    			     <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' ><Link to={"./Library"}>Write</Link></button>
+    			     <Link to={"./Library"}><button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Write</button></Link>
           </div>
 
     		</div>
-        </>
+      </div>
+      </>
 )
 }
 

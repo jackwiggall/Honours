@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Header from './header.jsx';
 import Home from './home.jsx';
 import Library from './library.jsx';
 import Create from './create.jsx';
@@ -20,17 +19,16 @@ return (
       <BrowserRouter>
       <Routes>
 
-          <Route exact path='/' component={Home} />
-          <Route exact path='*' component={Home} />
+          <Route exact path='/' element={<Home />} />
 
-          <Route exact path='/library' component={Library} />
-          <Route exact path='/library/create' component={Create} />
-          <Route exact path='/library/buttons' component={Buttons} />
-          <Route exact path='/library/tags' component={Tags} />
-          <Route exact path='/library/page' component={Page} />
+          <Route exact path='/library' element={<Library />} />
+          <Route exact path='/library/create' element={<Create />} />
+          <Route exact path='/library/create/buttons' element={<Buttons />} />
+          <Route exact path='/library/create/tags' element={<Tags />} />
+          <Route exact path='/library/create/page' element={<Page />} />
 
-          <Route exact path='/search' component={Search} />
-          <Route exact path='/search/info' component={Info} />
+          <Route exact path='/search' element={<Search />} />
+          <Route exact path='/search/info' element={<Info />} />
 
       </Routes>
       </BrowserRouter>
