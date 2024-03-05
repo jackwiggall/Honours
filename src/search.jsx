@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { generateClient } from 'aws-amplify/api';
-import { listTodos } from './graphql/queries';
+//import { listTodos } from './graphql/queries';
 
-const client = generateClient();
+//const client = generateClient();
 
-const todos = await client.graphql({ query: listTodos });
+//const todos = await client.graphql({ query: listTodos });
 
 function toggleFilters() {
 

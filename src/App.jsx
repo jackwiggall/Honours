@@ -39,4 +39,4 @@ return (
 export default App;
 
 Amplify.configure(config);
-const client = generateClient();
+//const client = generateClient();
