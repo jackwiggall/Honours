@@ -1,5 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { generateClient } from 'aws-amplify/api';
+import { listTodos } from './graphql/queries';
+
+const client = generateClient();
+
+const todos = await client.graphql({ query: listTodos });
 
 function toggleFilters() {
 
@@ -43,6 +49,7 @@ return (
 
       <div className='results'>
 
+      <div className='box'>
       <div className='card' style={{width: '100%', marginBottom: '20px'}}>
         <Link to={"./Info"}> <img src='C:\Users\jackw\Pictures\Screenshots\Screenshot 2023-11-27 212356.png' class='card-img-top' alt='...'/>
         </Link><div className='card-body'>
@@ -52,6 +59,7 @@ return (
         <ul id='2' className='list-group list-group-flush text-secondary'>
           <li className='list-group-item'>#fantasy, #sci-fi</li>
         </ul>
+      </div>
       </div>
       </div>
 
