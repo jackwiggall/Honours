@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import { Amplify } from 'aws-amplify';
+import config from './aws-exports.js';
+
 import Home from './home.jsx';
 import Library from './library.jsx';
 import Create from './create.jsx';
@@ -12,7 +15,6 @@ import Search from './search.jsx';
 
 import './App.css';
 {/*import 'bootstrap/dist/css/bootstrap.min.css';*/}
-
 
 function App() {
 return (
@@ -35,3 +37,6 @@ return (
     )
     }
 export default App;
+
+Amplify.configure(config);
+const client = generateClient();
