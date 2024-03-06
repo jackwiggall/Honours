@@ -2,7 +2,10 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Amplify } from 'aws-amplify';
-import config from './aws-exports.js';
+import { generateClient } from 'aws-amplify/api';
+import config from './amplifyconfiguration.json';
+
+import { listGameInfos } from './graphql/queries';
 
 import Home from './home.jsx';
 import Library from './library.jsx';
@@ -39,4 +42,6 @@ return (
 export default App;
 
 Amplify.configure(config);
-//const client = generateClient();
+const client = generateClient();
+const result = await client.graphql({ query: listGameInfos });
+console.log(result);
