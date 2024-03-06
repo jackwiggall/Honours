@@ -6,12 +6,6 @@ import { listGameInfos } from './graphql/queries';
 
 const client = generateClient();
 
-async (dispatch) => {
-  const result = await client.graphql({ query: listGameInfos, variables: {limit: 3}});
-  console.log(result);
-  //get some games for the search page
-};
-
 function toggleFilters() {
 
   document.getElementById("filters").classList.toggle("hidden");
@@ -70,7 +64,11 @@ return (
 
     </div>
     </>
-)
-}
-
+)}
 export default Search;
+
+async function SearchQuery() {
+  const result = await client.graphql({ query: listGameInfos, variables: {limit: 3}});
+  console.log(result);
+  //get some games for the search page
+};
