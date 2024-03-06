@@ -4,7 +4,7 @@ import { generateClient } from 'aws-amplify/api';
 
 import { listGameInfos } from './graphql/queries';
 
-//const client = generateClient();
+const client = generateClient();
 
 async (dispatch) => {
   const result = await client.graphql({ query: listGameInfos, variables: {limit: 3}});
