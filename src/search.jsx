@@ -22,7 +22,7 @@ return (
 
       <div className='box'>
         <form className='form-inline'>
-          <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search'/>
+          <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search'id='searchBar' />
           <button className='btn btn-primary my-2 my-sm-0 mr-1' type='button'>Search <i class='fa-solid fa-magnifying-glass'></i></button>
 
           <select className='custom-select mr-sm-2' id='inlineFormCustomSelect'>
@@ -67,8 +67,6 @@ return (
 )}
 export default Search;
 
-async function SearchQuery() {
   const result = await client.graphql({ query: listGameInfos, variables: {limit: 3}});
   console.log(result);
   //get some games for the search page
-};
