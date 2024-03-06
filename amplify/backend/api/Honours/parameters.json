@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "Honours",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-03-05T15:05:30.687Z"
+}
