@@ -43,5 +43,5 @@ export default App;
 
 Amplify.configure(config);
 const client = generateClient();
-const result = await client.graphql({ query: listGameInfos });
+const result = await client.graphql({ query: listGameInfos, variables: {limit: 3}});
 console.log(result);
