@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { generateClient } from 'aws-amplify/api';
-//import { listTodos } from './graphql/queries';
+
+import { listGameInfos } from './graphql/queries';
 
 //const client = generateClient();
 
-//const todos = await client.graphql({ query: listTodos });
+async (dispatch) => {
+  const result = await client.graphql({ query: listGameInfos, variables: {limit: 3}});
+  console.log(result);
+  //get some games for the search page
+};
 
 function toggleFilters() {
 
@@ -24,7 +29,7 @@ return (
       <div className='box'>
         <form className='form-inline'>
           <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search'/>
-          <button className='btn btn-primary my-2 my-sm-0 mr-1' type='submit'>Search <i class='fa-solid fa-magnifying-glass'></i></button>
+          <button className='btn btn-primary my-2 my-sm-0 mr-1' type='button'>Search <i class='fa-solid fa-magnifying-glass'></i></button>
 
           <select className='custom-select mr-sm-2' id='inlineFormCustomSelect'>
             <option selected>Sort...</option>
@@ -51,7 +56,7 @@ return (
 
       <div className='box'>
       <div className='card' style={{width: '100%', marginBottom: '20px'}}>
-        <Link to={"./Info"}> <img src='C:\Users\jackw\Pictures\Screenshots\Screenshot 2023-11-27 212356.png' class='card-img-top' alt='...'/>
+        <Link to={"./Info"}> <img src='' class='card-img-top' alt='...'/>
         </Link><div className='card-body'>
           <h5 className='card-title'>Card title</h5>
           <p className='card-text d-inline-block'>Brief description of the project.</p>

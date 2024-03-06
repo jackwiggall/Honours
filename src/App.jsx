@@ -5,8 +5,6 @@ import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
 import config from './amplifyconfiguration.json';
 
-import { listGameInfos } from './graphql/queries';
-
 import Home from './home.jsx';
 import Library from './library.jsx';
 import Create from './create.jsx';
@@ -43,8 +41,3 @@ export default App;
 
 Amplify.configure(config);
 const client = generateClient();
-
-//async (dispatch) => {
-  //const result = await client.graphql({ query: listGameInfos, variables: {limit: 3}});
-  //console.log(result);
-//};
