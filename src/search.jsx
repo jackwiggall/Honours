@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
+import config from './amplifyconfiguration.json';
 
 import { listGameInfos } from './graphql/queries';
+
+Amplify.configure(config);
 
 const client = generateClient();
 
@@ -67,6 +72,6 @@ return (
 )}
 export default Search;
 
-  const result = await client.graphql({ query: listGameInfos, variables: {limit: 3}});
-  console.log(result);
-  //get some games for the search page
+const result = await client.graphql({ query: listGameInfos});
+console.log(result);
+//get some games for the search page

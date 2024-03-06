@@ -1,6 +1,6 @@
 {
-  "name": "My awesome PWA",
-  "short_name": "My PWA",
+  "name": "My Honors PWA",
+  "short_name": "Honors",
   "start_url": "/?source=pwa",
   "display": "standalone",
   "lang":"en-US",
