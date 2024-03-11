@@ -11,7 +11,7 @@ return (
       </div>
 
         <div className='box'>
-          <img src='C:\Users\jackw\Pictures\Screenshots\Screenshot 2023-11-27 212356.png' style={{maxWidth: '100%'}} alt='...' />
+          <img src='' style={{maxWidth: '100%'}} alt='...' />
         </div>
 
         <div className='box'>
@@ -35,7 +35,7 @@ return (
           <div className='container'>
             <div className='row'>
               <div className='col-sm-2'>
-                <img src='C:\Users\jackw\Videos\Books\skyward_square.jpg' style={{width: '100%', aspectRatio: '1 / 1'}} alt='...' />
+                <img src='' style={{width: '100%', aspectRatio: '1 / 1'}} alt='...' />
                 <b className='text-center'>User</b>
               </div>
               <div className='col-7'>

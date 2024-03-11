@@ -21,11 +21,9 @@ export const getGameInfo = /* GraphQL */ `
 `;
 export const listGameInfos = /* GraphQL */ `
   query ListGameInfos(
-    $filter: ModelGameInfoFilterInput
     $limit: Int
-    $nextToken: String
   ) {
-    listGameInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listGameInfos(limit: $limit) {
       items {
         id
         accountsID
@@ -36,8 +34,6 @@ export const listGameInfos = /* GraphQL */ `
         updatedAt
         __typename
       }
-      nextToken
-      __typename
     }
   }
 `;
