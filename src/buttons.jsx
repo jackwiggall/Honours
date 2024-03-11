@@ -23,14 +23,14 @@ return (
         </div>
 
         <div className='box'>
-            <button className='btn w-100' type='button' onClick='alert(`Change font etc`)'>Text Format</button>
+            <button className='btn w-100' type='button' onClick={'alert(`Change font etc`)'}>Text Format</button>
         </div>
 
         <div className='box'>
-            <button className='btn w-100' type='button' onClick='alert(`Upload images`)'>Images</button>
+            <button className='btn w-100' type='button' onClick={'alert(`Upload images`)'}>Images</button>
         </div>
 
-        <button className='btn btn-primary w-100 my-2 my-sm-0 mr-1' type='button' onClick='alert(`You cannot publish yet!`)'>Publish</button>
+        <button className='btn btn-primary w-100 my-2 my-sm-0 mr-1' type='button' onClick={'alert(`You cannot publish yet!`)'}>Publish</button>
 
     </div>
     </>

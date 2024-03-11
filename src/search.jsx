@@ -19,20 +19,20 @@ return (
       <div className='box'>
         <form className='form-inline'>
           <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search'id='searchBar' />
-          <button className='btn btn-primary my-2 my-sm-0 mr-1' type='button'>Search <i class='fa-solid fa-magnifying-glass'></i></button>
+          <button className='btn btn-primary my-2 my-sm-0 mr-1' type='button'>Search <i className='fa-solid fa-magnifying-glass'></i></button>
 
           <select className='custom-select mr-sm-2' id='inlineFormCustomSelect'>
-            <option selected>Sort...</option>
-            <option value='1'>Views<i className='fa-solid fa-eye'></i></option>
-            <option value='2'>Likes<i className='fa-solid fa-heart'></i></option>
-            <option value='3'>Comments<i className='fa-solid fa-comment'></i></option>
+            <option defaultValue>Sort...</option>
+            <option value='1'>Views</option>
+            <option value='2'>Likes</option>
+            <option value='3'>Comments</option>
           </select>
 
 
-          <button type='button' className='btn btn-primary my-2 my-sm-0' onClick={'toggleFilters()'}>Filter <i className='fa-solid fa-filter'></i></button>
+          <button type='button' className='btn btn-primary my-2 my-sm-0' onClick={'alert(`toggleFilters`)'}>Filter <i className='fa-solid fa-filter'></i></button>
           <div id='filters' className='hidden m-2'>
             <select className='custom-select mr-sm-2' id='inlineFormCustomSelect'>
-              <option selected>Genre</option>
+              <option defaultValue>Genre</option>
               <option value='1'>Fantasy</option>
               <option value='2'>Mystery</option>
               <option value='3'>Sci-Fi</option>

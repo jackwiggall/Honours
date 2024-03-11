@@ -11,16 +11,12 @@ return (
       </div>
 
         <div className='box'>
-          <img src='' style={{maxWidth: '100%'}} alt='...' />
-        </div>
-
-        <div className='box'>
-          <h3 className='d-inline-block'>Title</h3> {/*<!--Name-->*/}
+          <h3 className='d-inline-block'>{'item.title'}</h3> {/*<!--Name-->*/}
           <h4 className='d-inline-block float-right'> 2 <i className='fa-solid fa-eye'></i> {/*<!--Views-->*/}
           3 <i className='fa-solid fa-heart'></i> {/*<!--Likes-->*/}
           1 <i className='fa-solid fa-comment'></i></h4> {/*<!--Comments-->*/}
           <p>By: User</p>
-          <p>In a world where lorem ipsum, a legendary lorem commits to filling out this description.</p>
+          <p>{'item.LongDesc'}</p>
           <p>#tags #cool #mystery</p>
         </div>
 
@@ -35,7 +31,6 @@ return (
           <div className='container'>
             <div className='row'>
               <div className='col-sm-2'>
-                <img src='' style={{width: '100%', aspectRatio: '1 / 1'}} alt='...' />
                 <b className='text-center'>User</b>
               </div>
               <div className='col-7'>
