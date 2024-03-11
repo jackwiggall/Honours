@@ -9,15 +9,15 @@ return (
     		<h1 className='centre'>Welcome to the Library of Alexandria</h1>
     		<img src='' className='centre'/>
         <h2 className='centre' style={{marginTop: "5px"}}>Which would you to do?</h2>
-        <div class='centre'>
+        <div className='centre'>
 
-          <div class='box'>
+          <div className='box'>
     			     <Link to={"./Search"}> <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Read</button></Link>
           </div>
 
           <h2>OR</h2>
 
-          <div class='box'>
+          <div className='box'>
     			     <Link to={"./Library"}><button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Write</button></Link>
           </div>
 
