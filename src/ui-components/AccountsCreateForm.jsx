@@ -100,10 +100,10 @@ export default function AccountsCreateForm(props) {
             },
           });
           if (onSuccess) {
-            UserProfile.setName(username);
             onSuccess(modelFields);
           }
           if (clearOnSuccess) {
+            UserProfile.setName(username);
             resetStateValues();
           }
         } catch (err) {
