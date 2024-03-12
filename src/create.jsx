@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@aws-amplify/ui-react";
-
+import UserProfile from './userProfile.jsx';
 
 function Create() {
 
@@ -10,7 +10,7 @@ return (
   <div className='bground'>
     <div className='d-block w-100' style={{textAlign: "right"}}>
       <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library</p>
-      <Link to={"../User"}><button className='btn mb-1' type='button'>User <i className='fa-solid fa-user' /></button></Link>
+      <Link to={"../User"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
       <Link to={"../Library"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
         </div>
 
@@ -40,7 +40,7 @@ return (
             </select>
         </div>
         <i>*Required</i>
-        <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button> //ONSUBMIT REDIRECT + SAVE SESSION VARS
+        <Link to="Buttons"><Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button></Link> {/*ONSUBMIT REDIRECT + SAVE SESSION VARS*/}
         </form>
 
     </div>

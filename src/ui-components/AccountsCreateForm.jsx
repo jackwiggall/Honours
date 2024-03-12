@@ -10,6 +10,7 @@ import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createAccounts } from "../graphql/mutations";
+import UserProfile from '../userProfile.jsx';
 const client = generateClient();
 export default function AccountsCreateForm(props) {
   const {
@@ -99,6 +100,7 @@ export default function AccountsCreateForm(props) {
             },
           });
           if (onSuccess) {
+            UserProfile.setName(username);
             onSuccess(modelFields);
           }
           if (clearOnSuccess) {
