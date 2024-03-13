@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@aws-amplify/ui-react";
 import UserProfile from './userProfile.jsx';
+import Publish from './publish.jsx';
+
 
 function Buttons() {
+
 return (
 <>
 <div className='bground'>
@@ -33,7 +36,7 @@ return (
             <button className='btn w-100' type='button' onClick={() => alert(`Upload images`)}>Images</button>
         </div>
 
-        <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='button' onClick={() => alert(`You cannot publish yet!`)}>Publish</Button>
+        <Publish />
 
     </div>
     </>
