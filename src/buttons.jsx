@@ -26,14 +26,14 @@ return (
         </div>
 
         <div className='box'>
-            <button className='btn w-100' type='button' onClick={'alert(`Change font etc`)'}>Text Format</button>
+            <button className='btn w-100' type='button' onClick={() => alert(`Change font etc`)}>Text Format</button>
         </div>
 
         <div className='box'>
-            <button className='btn w-100' type='button' onClick={'alert(`Upload images`)'}>Images</button>
+            <button className='btn w-100' type='button' onClick={() => alert(`Upload images`)}>Images</button>
         </div>
 
-        <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='button' onClick={'alert(`You cannot publish yet!`)'}>Publish</Button>
+        <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='button' onClick={() => alert(`You cannot publish yet!`)}>Publish</Button>
 
     </div>
     </>

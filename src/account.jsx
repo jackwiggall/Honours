@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AccountsCreateForm } from './ui-components';
 import UserProfile from './userProfile.jsx';
 
-
 function Account() {
 
 return (

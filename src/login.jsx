@@ -25,7 +25,7 @@ return (
             <input className='form-control mr-sm-2' id='passkey' type='comment' placeholder='Passkey' required aria-label='Passkey'/>
         </div>
 
-        <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='submit' onSubmit={UserProfile.setName("Logged")} >Submit</Button> {/*Set to username*/}
+        <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='submit' onClick={() => UserProfile.setName("Admin")} >Submit</Button> {/*Set to username*/}
         </form>
       </div>
     	</>
