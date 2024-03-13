@@ -35,7 +35,7 @@ export declare type AccountsUpdateFormOverridesProps = {
 export declare type AccountsUpdateFormProps = React.PropsWithChildren<{
     overrides?: AccountsUpdateFormOverridesProps | undefined | null;
 } & {
-    id?: string;
+    username?: string;
     accounts?: any;
     onSubmit?: (fields: AccountsUpdateFormInputValues) => AccountsUpdateFormInputValues;
     onSuccess?: (fields: AccountsUpdateFormInputValues) => void;

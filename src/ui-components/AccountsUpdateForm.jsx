@@ -14,7 +14,7 @@ import { updateAccounts } from "../graphql/mutations";
 const client = generateClient();
 export default function AccountsUpdateForm(props) {
   const {
-    id: idProp,
+    username: usernameProp,
     accounts: accountsModelProp,
     onSuccess,
     onError,
@@ -39,18 +39,18 @@ export default function AccountsUpdateForm(props) {
   const [accountsRecord, setAccountsRecord] = React.useState(accountsModelProp);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = idProp
+      const record = usernameProp
         ? (
             await client.graphql({
               query: getAccounts.replaceAll("__typename", ""),
-              variables: { id: idProp },
+              variables: { username: usernameProp },
             })
           )?.data?.getAccounts
         : accountsModelProp;
       setAccountsRecord(record);
     };
     queryData();
-  }, [idProp, accountsModelProp]);
+  }, [usernameProp, accountsModelProp]);
   React.useEffect(resetStateValues, [accountsRecord]);
   const validations = {
     username: [{ type: "Required" }],
@@ -115,7 +115,7 @@ export default function AccountsUpdateForm(props) {
             query: updateAccounts.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: accountsRecord.id,
+                username: accountsRecord.username,
                 ...modelFields,
               },
             },
@@ -136,7 +136,7 @@ export default function AccountsUpdateForm(props) {
       <TextField
         label="Username"
         isRequired={true}
-        isReadOnly={false}
+        isReadOnly={true}
         value={username}
         onChange={(e) => {
           let { value } = e.target;
@@ -168,7 +168,7 @@ export default function AccountsUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || accountsModelProp)}
+          isDisabled={!(usernameProp || accountsModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -180,7 +180,7 @@ export default function AccountsUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || accountsModelProp) ||
+              !(usernameProp || accountsModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

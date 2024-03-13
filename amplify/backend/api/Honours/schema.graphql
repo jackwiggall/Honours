@@ -16,7 +16,7 @@ type Comments @model @auth(rules: [{allow: public}]) {
 
 type Accounts @model @auth(rules: [{allow: public}]) {
   id: ID!
-  username: String!
+  username: String! @primaryKey
   HasComments: [Comments] @hasMany(indexName: "byAccounts", fields: ["id"])
   HasGames: [GameInfo] @hasMany(indexName: "byAccounts", fields: ["id"])
 }

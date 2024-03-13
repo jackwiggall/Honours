@@ -11,6 +11,7 @@ import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createAccounts } from "../graphql/mutations";
 import UserProfile from '../userProfile.jsx';
+
 const client = generateClient();
 export default function AccountsCreateForm(props) {
   const {
@@ -104,6 +105,7 @@ export default function AccountsCreateForm(props) {
           }
           if (clearOnSuccess) {
             UserProfile.setName(username);
+            window.location.reload;
             resetStateValues();
           }
         } catch (err) {

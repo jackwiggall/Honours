@@ -4,16 +4,12 @@ import { useState } from "react";
 //https://stackoverflow.com/questions/42420531/what-is-the-best-way-to-manage-a-users-session-in-react
 var UserProfile = (function() {
   var username = "Login";
+  var id = "Empty";
 
   var getName = function() {
 
     if (localStorage.getItem("name")!==null) {
-      if (username!=="Login")
-      {
-        return username;    // Or pull this from cookie/localStorage
-      }else {
-        return "Login";
-      }
+      return localStorage.getItem("name");    // Or pull this from cookie/localStorage
     }else {
       return "Login";
     }
@@ -26,16 +22,40 @@ var UserProfile = (function() {
     if (name !== "Login") {
        //needs validated
       localStorage.setItem("name", name);
+      localStorage.setItem("id", id);
     } else {
       localStorage.removeItem("name");
+      localStorage.removeItem("id");
     }
-
-    // Also set this in cookie/localStorage
   };
+
+  var setID = function(userID) {
+    id = userID;
+
+    if (id !== "Empty") {
+       //needs validated
+      localStorage.setItem("id", id);
+    } else {
+      localStorage.removeItem("id");
+    }
+  };
+
+  var getID = function() {
+
+    if (localStorage.getItem("id")!==null) {
+      return id;
+    } else {
+      return "Error";
+    }
+  };
+
+  // Also set this in cookie/localStorage
 
   return {
     getName: getName,
-    setName: setName
+    setName: setName,
+    setID: setID,
+    getID: getID
   }
 
 })();
