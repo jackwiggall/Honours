@@ -19,7 +19,7 @@ function UserBody() {
     }else {
       return (
         <div className='bground'>
-          <h2 className='centre' style={{marginTop: "5px"}}>Which would you to do?</h2> {/*User is not logged in*/}
+          <h3 className='centre' style={{marginTop: "5px"}}>Which would you to do?</h3> {/*User is not logged in*/}
           <div className='centre'>
 
             <div className='box'>

@@ -14,7 +14,7 @@ return (
       </div>
     		<h1 className='centre'>Welcome to the Library of Alexandria</h1>
     		<img src='' className='centre'/>
-        <h2 className='centre' style={{marginTop: "5px"}}>Which would you to do?</h2>
+        <h3 className='centre' style={{marginTop: "5px"}}>Which would you to do?</h3>
         <div className='centre'>
 
           <div className='box'>

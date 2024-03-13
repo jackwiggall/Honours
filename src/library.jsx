@@ -32,6 +32,7 @@ function LibraryBody() {
   }else {
     return (
     <> {/*User is not logged in, show login*/}
+        <h2 className='centre' style={{marginTop: "5px"}}>Login to access this feature</h2>
       <UserBody />
     </>
   )
