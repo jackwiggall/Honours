@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
 
 import { listGameInfos } from './graphql/queries';
@@ -11,6 +10,9 @@ function Results() {
 const results = client.graphql({ query: listGameInfos, limit: 3});
 console.log(results); //can get results just not able to display them
 
+//var result = JSON.parse(results); //no work
+
+
 return (
   //{results..map((item) => {
     <div className='box'>
@@ -20,7 +22,7 @@ return (
           <h5 className='card-title'>{'item.title'}</h5>
           <p className='card-text d-inline-block'>{'item.shortDesc'}</p>
         </div>
-        <ul id='2' className='list-group list-group-flush text-secondary'>
+        <ul id='1' className='list-group list-group-flush text-secondary'>
           <li className='list-group-item'>#fantasy, #sci-fi</li>
         </ul>
         </Link>
