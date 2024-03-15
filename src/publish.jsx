@@ -50,6 +50,9 @@ function Publish() {
       e.preventDefault();
       //ATTEMPT PUBLISH PROJECT
       PublishExtra();
+      localStorage.removeItem("storyDetails");
+      localStorage.removeItem("pageDetails");
+      localStorage.removeItem("tagList");
       nav('../Library'); // Redirect to library
     }
 
