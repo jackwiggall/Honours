@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { generateClient } from 'aws-amplify/api';
+//import { generateClient } from 'aws-amplify/api';
 
-import { listGameInfos } from './graphql/queries';
+//import { listGameInfos } from './graphql/queries';
 
-const client = generateClient();
+//const client = generateClient();
 
 function Results() {
-const results = client.graphql({ query: listGameInfos, limit: 3});
-console.log(results); //can get results just not able to display them
+//const results = client.graphql({ query: listGameInfos, limit: 3});
+//console.log(results); //can get results just not able to display them
 
 //var result = JSON.parse(results); //no work
 

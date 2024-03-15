@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { generateClient } from 'aws-amplify/api';
-import { gameInfosByAccountsID } from './graphql/queries';
+//import { generateClient } from 'aws-amplify/api';
+//import { gameInfosByAccountsID } from './graphql/queries';
 
 function displayResult(final) {
     return (
@@ -35,9 +35,9 @@ function LibraryResult() {
   const [loop, setLoop] = useState(true); //takes a second to save
   var final = [];
 
-  const client = generateClient();
+  //const client = generateClient();
 
-  const results = client.graphql({ query: gameInfosByAccountsID, headers: {
+  /*const results = client.graphql({ query: gameInfosByAccountsID, headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   }, variables: {accountsID: "8e7829a9-ec07-4b64-8170-d31b7101522e"}, limit: 3});
@@ -63,9 +63,11 @@ function LibraryResult() {
     return (
       <h3 className='text-center mb-5'>Your library is empty!</h3>
     )
- });
+ });*/
 
-
+ return (
+   <h3 className='text-center mb-5'>Your library is empty!</h3>
+ )
 
 
 }

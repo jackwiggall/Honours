@@ -4,9 +4,6 @@ import UserProfile from './userProfile.jsx';
 import UserBody from './userBody.jsx';
 import LibraryResult from './libraryResults.jsx';
 
-import { generateClient } from 'aws-amplify/api';
-import { gameInfosByAccountsID } from './graphql/queries';
-
 function Library() {
 return (
       <>
