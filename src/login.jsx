@@ -1,18 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserProfile from './userProfile.jsx';
+import { Button } from "@aws-amplify/ui-react";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+
+  const nav = useNavigate();
+
+  const handleSubmit = (e) => {
+
+      e.preventDefault();
+
+      UserProfile.setName("Admin");
+      UserProfile.setID('8e7829a9-ec07-4b64-8170-d31b7101522e');
+      nav("../");
+  }
+
 return (
       <>
       <div className='bground'>
         <div className='d-block w-100' style={{textAlign: "right"}}>
           <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / User</p>
-          <Link to={"../User"}><button className='btn mb-1' type='button'>User <i className='fa-solid fa-user' /></button></Link>
+          <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()}<i className='fa-solid fa-user' /></button></Link>
           <Link to={"../"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
         </div>
 
         <h3 className='text-center mb-5'>Login</h3>
 
+        <form onSubmit={handleSubmit}>
         <div className='box'>
             <h4 className='mr-2'>Username</h4>
             <input className='form-control mr-sm-2' id='username' type='comment' placeholder='Username' required aria-label='Username'/>
@@ -22,8 +38,8 @@ return (
             <input className='form-control mr-sm-2' id='passkey' type='comment' placeholder='Passkey' required aria-label='Passkey'/>
         </div>
 
-
-        <button className='btn btn-primary w-100 my-2 my-sm-0 mr-1' type='submit'>Submit</button>
+        <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button> {/*Set to username*/}
+        </form>
       </div>
     	</>
 )

@@ -15,6 +15,10 @@ body {
   background: #FFB4A2;
 }
 
+.blended, .blended:hover {
+  color: #FFCDB2;
+}
+
 /**
 bg texture code from https://stackoverflow.com/questions/18105833/css-combine-texture-and-color
 bg texture from https://www.toptal.com/designers/subtlepatterns/

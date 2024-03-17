@@ -10,8 +10,13 @@ import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createAccounts } from "../graphql/mutations";
+import UserProfile from '../userProfile.jsx';
+import { useNavigate } from 'react-router-dom';
+
+
 const client = generateClient();
 export default function AccountsCreateForm(props) {
+  const nav = useNavigate();
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -102,7 +107,9 @@ export default function AccountsCreateForm(props) {
             onSuccess(modelFields);
           }
           if (clearOnSuccess) {
+            UserProfile.setName(username);
             resetStateValues();
+            nav('../');
           }
         } catch (err) {
           if (onError) {

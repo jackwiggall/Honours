@@ -21,9 +21,11 @@ export const getGameInfo = /* GraphQL */ `
 `;
 export const listGameInfos = /* GraphQL */ `
   query ListGameInfos(
+    $filter: ModelGameInfoFilterInput
     $limit: Int
+    $nextToken: String
   ) {
-    listGameInfos(limit: $limit) {
+    listGameInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         accountsID
@@ -34,6 +36,8 @@ export const listGameInfos = /* GraphQL */ `
         updatedAt
         __typename
       }
+      nextToken
+      __typename
     }
   }
 `;
@@ -160,8 +164,8 @@ export const commentsByGameID = /* GraphQL */ `
   }
 `;
 export const getAccounts = /* GraphQL */ `
-  query GetAccounts($id: ID!) {
-    getAccounts(id: $id) {
+  query GetAccounts($username: String!) {
+    getAccounts(username: $username) {
       id
       username
       HasComments {
@@ -180,11 +184,19 @@ export const getAccounts = /* GraphQL */ `
 `;
 export const listAccounts = /* GraphQL */ `
   query ListAccounts(
+    $username: String
     $filter: ModelAccountsFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listAccounts(
+      username: $username
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
         id
         username

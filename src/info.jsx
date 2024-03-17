@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@aws-amplify/ui-react";
+import UserProfile from './userProfile.jsx';
 
 function Info() {
 return (
 <>
 <div className='bground'>
   <div className='d-block w-100' style={{textAlign: "right"}}>
-    <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library</p>
-    <Link to={"../User"}><button className='btn mb-1' type='button'>User <i className='fa-solid fa-user' /></button></Link>
+    <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Search</p>
+    <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
     <Link to={"../search"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
       </div>
 
@@ -25,7 +26,7 @@ return (
         <div className='box'>
           <form className='form-inline'>
             <input className='form-control mr-sm-2 w-75' type='comment' placeholder='Comment' required aria-label='Comment' />
-            <Button variation='primary' className='my-2 my-sm-0 mr-1' type='button'>Comment <i class='fa-solid fa-comment'></i></Button>
+            <Button variation='primary' className='my-2 my-sm-0 mr-1' type='button'>Comment <i className='fa-solid fa-comment'></i></Button>
             </form>
         </div>
 
