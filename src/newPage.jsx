@@ -4,12 +4,10 @@ import UserProfile from './userProfile.jsx';
 import { Button } from "@aws-amplify/ui-react";
 import { useNavigate } from 'react-router-dom';
 
-function Page() {
+function NewPage() {
 
   const [ptitle, setpTitle] = useState('');
   const [text, setText] = useState('');
-
-  const [run, setRun] = useState(false); //constant bool to prevent loop error
 
   const nav = useNavigate();
 
@@ -25,20 +23,7 @@ function Page() {
       localStorage.setItem("pageDetails", JSON.stringify(pageDetails));
       //saves story details as json string
 
-      nav('../library/create/pagelist'); // Redirect to page list
-
-  }
-
-  if (localStorage.getItem("pageDetails")!==null && run === false) {
-    //story details already exist, pull them
-
-    setRun(true); //prevents infinite loop
-
-    var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
-
-    //set form data
-    setpTitle(newDetails.ptitle);
-    setText(newDetails.text);
+      nav('../Library/Create/Buttons'); // Redirect to buttons
 
   }
 
@@ -76,4 +61,4 @@ return (
 )
 }
 
-export default Page;
+export default NewPage;

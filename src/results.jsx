@@ -17,7 +17,7 @@ return (
   //{results..map((item) => {
     <div className='box'>
       <div className='card' style={{width: '100%', marginBottom: '20px'}}>
-        <Link to={"./Info"} style={{color: 'inherit', textDecoration: 'none'}}>
+        <Link to={"./info"} style={{color: 'inherit', textDecoration: 'none'}}>
         <div className='card-body'>
           <h5 className='card-title'>{'item.title'}</h5>
           <p className='card-text d-inline-block'>{'item.shortDesc'}</p>

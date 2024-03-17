@@ -1,14 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Amplify } from 'aws-amplify';
-import { generateClient } from 'aws-amplify/api';
-import config from './amplifyconfiguration.json';
-
 import Home from './home.jsx';
 import Library from './library.jsx';
 import Create from './create.jsx';
 import Page from './page.jsx';
+import NewPage from './newPage.jsx';
+import PageList from './pageList.jsx';
 import Buttons from './buttons.jsx';
 import Tags from './tags.jsx';
 import Info from './info.jsx';
@@ -18,7 +16,6 @@ import Account from './account.jsx';
 import Login from './login.jsx';
 
 import './App.css';
-{/*import 'bootstrap/dist/css/bootstrap.min.css';*/}
 
 function App() {
 return (
@@ -32,10 +29,12 @@ return (
           <Route exact path='/library/create/buttons' element={<Buttons />} />
           <Route exact path='/library/create/tags' element={<Tags />} />
           <Route exact path='/library/create/page' element={<Page />} />
+          <Route exact path='/library/create/new_page' element={<NewPage />} />
+          <Route exact path='/library/create/pagelist' element={<PageList />}/>
 
-          <Route exact path='/User' element={<User />} />
-          <Route exact path='/User/create' element={<Account/>} />
-          <Route exact path='/User/login' element={<Login />} />
+          <Route exact path='/user' element={<User />} />
+          <Route exact path='/user/create' element={<Account/>} />
+          <Route exact path='/user/login' element={<Login />} />
 
           <Route exact path='/search' element={<Search />} />
           <Route exact path='/search/info' element={<Info />} />
@@ -45,6 +44,3 @@ return (
     )
     }
 export default App;
-
-Amplify.configure(config);
-const client = generateClient();

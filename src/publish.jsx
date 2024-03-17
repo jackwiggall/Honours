@@ -53,7 +53,7 @@ function Publish() {
       localStorage.removeItem("storyDetails");
       localStorage.removeItem("pageDetails");
       localStorage.removeItem("tagList");
-      nav('../Library'); // Redirect to library
+      nav('../library'); // Redirect to library
     }
 
 return (

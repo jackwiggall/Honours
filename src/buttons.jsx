@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from "@aws-amplify/ui-react";
+//import { Button } from "@aws-amplify/ui-react";
 import UserProfile from './userProfile.jsx';
 import Publish from './publish.jsx';
 
@@ -12,30 +12,27 @@ return (
 <div className='bground'>
   <div className='d-block w-100' style={{textAlign: "right"}}>
     <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library</p>
-    <Link to={"../User"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-    <Link to={"../Library"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
+    <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
+    <Link to={"../library"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
       </div>
 
         <div className='box'>
-            <Link to={"../Library/Create"}><button className='btn w-100' type='button'>Story Details</button></Link>
+            <Link to={"../library/create"}><button className='btn w-100' type='button'>Story Details</button></Link>
         </div>
 
         <div className='box'>
-            <Link to={"../Library/Create/Page"}><button className='btn w-100' type='button'>Create Page</button></Link>
+            <Link to={"../library/create/new_page"}><button className='btn w-100' type='button'>Create Page</button></Link>
         </div>
 
         <div className='box'>
-            <Link to={"../Library/Create/Tags"}><button className='btn w-100' type='button'>Tags</button></Link>
+            <Link to={"../library/create/pagelist"}><button className='btn w-100' type='button'>Page List</button></Link>
         </div>
 
         <div className='box'>
-            <button className='btn w-100' type='button' onClick={() => alert(`Change font etc`)}>Text Format</button>
+            <Link to={"../library/create/tags"}><button className='btn w-100' type='button'>Tags (not finished)</button></Link>
         </div>
 
-        <div className='box'>
-            <button className='btn w-100' type='button' onClick={() => alert(`Upload images`)}>Images</button>
-        </div>
-
+        <p>Games are saved locally until published.</p>
         <Publish />
 
     </div>

@@ -23,13 +23,13 @@ function UserBody() {
           <div className='centre'>
 
             <div className='box'>
-      			     <Link to={"../User/Create"}> <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Create Account</button></Link> {/*Account page*/}
+      			     <Link to={"../user/create"}> <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Create Account</button></Link> {/*Account page*/}
             </div>
 
             <h2>OR</h2>
 
             <div className='box'>
-      			     <Link to={"../User/Login"}><button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Login</button></Link>{/*Login page*/}
+      			     <Link to={"../user/login"}><button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Login</button></Link>{/*Login page*/}
             </div>
           </div>
         </div>

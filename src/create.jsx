@@ -33,7 +33,7 @@ function Create() {
       localStorage.setItem("storyDetails", JSON.stringify(storyDetails));
       //saves story details as json string
 
-      nav('./Buttons'); // Redirect to buttons
+      nav('./buttons'); // Redirect to buttons
 
   }
 

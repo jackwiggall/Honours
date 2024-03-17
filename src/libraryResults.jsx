@@ -11,7 +11,7 @@ function displayResult(final) {
 
     <div className='box'>
       <div className='card' style={{width: '100%', marginBottom: '20px'}}>
-        <Link to={'./Create'} style={{color: 'inherit', textDecoration: 'none'}}>
+        <Link to={'./create'} style={{color: 'inherit', textDecoration: 'none'}}>
         <div className='card-body'>
           <h5 className='card-title'>{i.title}</h5>
           <p className='card-text d-inline-block'>{i.shortDesc}</p>
