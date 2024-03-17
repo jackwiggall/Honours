@@ -14,6 +14,7 @@ import Search from './search.jsx';
 import User from './user.jsx';
 import Account from './account.jsx';
 import Login from './login.jsx';
+import Testing from './testing.jsx';
 
 import './App.css';
 
@@ -31,6 +32,7 @@ return (
           <Route exact path='/library/create/page' element={<Page />} />
           <Route exact path='/library/create/new_page' element={<NewPage />} />
           <Route exact path='/library/create/pagelist' element={<PageList />}/>
+          <Route exact path='/library/create/testing' element={<Testing />}/>
 
           <Route exact path='/user' element={<User />} />
           <Route exact path='/user/create' element={<Account/>} />
