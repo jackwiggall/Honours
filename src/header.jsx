@@ -1,24 +1,14 @@
-function Header() {
+import { Link } from 'react-router-dom';
+import UserProfile from './userProfile.jsx';
+
+function Header({link, location}) {
 return (
 <>
-<html lang='en'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <meta http-equiv='X-UA-Compatible' content='ie=edge' />
-    <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/> //bootstrap
-    <link rel='icon' href='images/icon.png' /> //web logo
-    <script src='https://kit.fontawesome.com/210a3569a8.js' crossorigin='anonymous'></script> //for icons
-  </head>
-  <body>
-    <main>
-    	<div className='bground'>
-      <h1>Header</h1>
-      </div>
-    </main>
-  </body>
-</html>
+  <div className='d-block w-100' style={{textAlign: "right"}}>
+    <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>{location}</p>
+    <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
+    <Link to={link}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
+</div>
 </>
     )
     }

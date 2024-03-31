@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import UserProfile from './userProfile.jsx';
 import { Button } from "@aws-amplify/ui-react";
 import { useNavigate } from 'react-router-dom';
+
+import Header from './header.jsx';
 
 function Tags() {
 
@@ -67,11 +67,7 @@ function Tags() {
 return (
     <>
     <div className='bground'>
-      <div className='d-block w-100' style={{textAlign: "right"}}>
-        <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library / Tags</p>
-        <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-        <Link to={"../library/create/buttons"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-      </div>
+    <Header link={"../library/create/buttons"} location={"LoA / Library  / Tags"} />
 
         <div className='box'>
             <h3 className='w-100'>Tag List</h3>

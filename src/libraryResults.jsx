@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 //import { generateClient } from 'aws-amplify/api';
 //import { gameInfosByAccountsID } from './graphql/queries';
 
-function displayResult(final) {
+//works for singular item in storage
+function DisplayResult(i) {
+
     return (
       <>
-    {final.map((i) => ( //gets variables just cant render display
-
     <div className='box'>
       <div className='card' style={{width: '100%', marginBottom: '20px'}}>
-        <Link to={'./create'} style={{color: 'inherit', textDecoration: 'none'}}>
+        <Link to={'./create/buttons'} style={{color: 'inherit', textDecoration: 'none'}}>
         <div className='card-body'>
-          <h5 className='card-title'>{i.title}</h5>
-          <p className='card-text d-inline-block'>{i.shortDesc}</p>
+          <h5 className='card-title'>{i.data.title}</h5>
+          <p className='card-text d-inline-block'>{i.data.shortDesc}</p>
         </div>
         <ul className='list-group list-group-flush text-secondary'>
           <li className='list-group-item'>#fantasy, #sci-fi</li>
@@ -22,18 +22,17 @@ function displayResult(final) {
         </Link>
       </div>
     </div>
-  ))
-  }
   </>
   )
+
 }
 
 //user is logged in, check if they have games
 function LibraryResult() {
 
-  //const [lib, setLib] = useState([{}]);
-  const [loop, setLoop] = useState(true); //takes a second to save
-  var final = [];
+  const [lib, setLib] = useState([{}]);
+  //const [loop, setLoop] = useState(true); //takes a second to save
+  //var final = [];
 
   //const client = generateClient();
 
@@ -64,11 +63,32 @@ function LibraryResult() {
       <h3 className='text-center mb-5'>Your library is empty!</h3>
     )
  });*/
+ const valid = useRef(0);
+ const len = useRef(0);
 
- return (
-   <h3 className='text-center mb-5'>Your library is empty!</h3>
- )
+ useEffect(()=>{
+   //needs to inform user of validation of why error, ie no pages etc
+     if (localStorage.getItem("storyDetails")!==null && valid.current!==1) {
 
+       var storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
+       //console.log(storyDetails);
+       setLib(storyDetails);
+       valid.current = 1;
+       len.current = storyDetails.length;
+     }
+   }, []); // empty array means only once
+
+   if (valid.current!==1) {
+     return (
+       <h3 className='text-center mb-5'>Your library is empty!</h3>
+     ) //still fires more than once
+   }else {
+     for (var i=0; i < len.current; i++) {
+       return (
+         <DisplayResult data={lib[i]}/>
+       )
+    }
+   }
 
 }
 export default LibraryResult;

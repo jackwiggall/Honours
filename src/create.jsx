@@ -23,12 +23,14 @@ function Create() {
 
       e.preventDefault();
 
-      const storyDetails = {
-        title : title,
-        shortDesc : shortDesc,
-        longDesc : longDesc,
-        genre : genre
-      }
+      const storyDetails = [
+        {
+          title : title,
+          shortDesc : shortDesc,
+          longDesc : longDesc,
+          genre : genre
+        }
+      ]
       localStorage.removeItem("storyDetails");
       localStorage.setItem("storyDetails", JSON.stringify(storyDetails));
       //saves story details as json string

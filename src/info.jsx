@@ -1,17 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from "@aws-amplify/ui-react";
-import UserProfile from './userProfile.jsx';
+
+import Header from './header.jsx';
 
 function Info() {
 return (
 <>
 <div className='bground'>
-  <div className='d-block w-100' style={{textAlign: "right"}}>
-    <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Search</p>
-    <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-    <Link to={"../search"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-      </div>
+<Header link={"../search"} location={"LoA / Search"} />
 
         <div className='box'>
           <h3 className='d-inline-block'>{'item.title'}</h3> {/*<!--Name-->*/}

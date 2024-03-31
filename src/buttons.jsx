@@ -1,20 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from "@aws-amplify/ui-react";
-import UserProfile from './userProfile.jsx';
-import Publish from './publish.jsx';
+import { Link } from 'react-router-dom';
 
+import Publish from './publish.jsx';
+import Header from './header.jsx';
 
 function Buttons() {
 
 return (
 <>
 <div className='bground'>
-  <div className='d-block w-100' style={{textAlign: "right"}}>
-    <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library / Create</p>
-    <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-    <Link to={"../library"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-      </div>
+  <Header link={"../library"} location={"LoA / Library / Create"} />
 
         <div className='box'>
             <Link to={"../library/create"}><button className='btn w-100' type='button'>Story Details</button></Link>
@@ -38,7 +34,7 @@ return (
         <Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit' >Delete</Button> {/*Not implemented*/}
 
     </div>
-    </>
+  </>
 )
 }
 
