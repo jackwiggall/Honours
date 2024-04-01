@@ -20,10 +20,37 @@ function LoopedLinks(props) {
   )
 }
 
+function RewriteArray(props,page) {
+  //SHOWS ALL PAGE TITLES FOR LINKS
+
+    const details = props;
+    console.log(details);
+    console.log(page);
+    var newObj = [{}];
+    var count = 0;
+    details.forEach((det) =>
+
+      {if (det.id!==page.id) {
+        newObj[count]=det;
+      }else {
+        newObj[count]=page;
+      }
+      //console.log(newObj[count]);
+      count++;
+    })
+    console.log(newObj);
+    if (newObj!==[{}])
+    {
+      return newObj;
+    }else {
+      return props;
+    }
+
+}
 
 function Page() {
 
-  const [prev, setPrev] = useState([{}]); //previous pages
+  var [prev, setPrev] = useState([{}]); //previous pages
 
   //const [id, setID] = useState('');
   const [title, setTitle] = useState('');
@@ -63,19 +90,15 @@ function Page() {
          ];
          setPrev(pageDetails.current);
       } else {
-        pageDetails.current = [
-           // Items before the insertion point:
-           ...prev.slice(0, insertAt),
-           // New item:
-           {
-             id: insertAt.current,
-             title : title,
-             text : text,
-             linkText : linkText,
-             linkID : linkID,
-           },
-           ...prev.slice(insertAt),
-         ];
+        console.log(`pageNum is ${pageNum.current}`)
+        const passObj = {
+          id: Number(pageNum.current),
+          title : title,
+          text : text,
+          linkText : linkText,
+          linkID : linkID,
+        }
+        pageDetails.current = RewriteArray(prev, passObj);
       }
 
 
@@ -95,33 +118,41 @@ function Page() {
 
   //check if other pages exist
   if (localStorage.getItem("pageDetails")!==null && valid.current===0) {
+
+    //only run once
+    valid.current = 1;
+
     //story details already exist, pull them
     var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
     setPrev(newDetails);
     empty.current = false;
 
     if (localStorage.getItem("currentPage")!==null) {
-      pageNum.current = localStorage.getItem("currentPage");
+      pageNum.current = localStorage.getItem("currentPage"); //sets to the id of editing page, is -1 for new page
     }
     if (pageNum.current===-1) { //set default values
+      //new page
       setTitle("");
       setText("");
       setLinkText("Restart");
-      insertAt.current = prev.length; // add new page to end of list
+      //console.log(newDetails.length); //returning 1?
+      insertAt.current = newDetails.length; // add new page to end of list
     }else {
-      insertAt.current = newDetails[pageNum.current].id; //set id to new id
-      console.log(insertAt.current);
+      //editing existing page
+      insertAt.current = pageNum.current; //set id to new id
+      //console.log(insertAt.current);
       //set form data
       setTitle(newDetails[pageNum.current].title);
       setText(newDetails[pageNum.current].text);
       setLinkText(newDetails[pageNum.current].linkText);
     }
-    valid.current = 1;
+
   }else if (valid.current===0) { //no pages already
     valid.current = 1;
+
     setTitle("");
     setText("");
-    setLinkText("Restart");
+    setLinkText("");
     insertAt.current = 0; // add new page to end of list
   }
 

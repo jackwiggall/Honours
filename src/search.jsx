@@ -23,7 +23,7 @@ return (
           </select>
 
 
-          <Button type='button' variation='primary' className='my-2 my-sm-0' onSubmit={alert(`toggleFilters`)}>Filter  <i className='fa-solid fa-filter'></i></Button>
+          <Button type='button' variation='primary' className='my-2 my-sm-0' onSubmit={() => alert(`toggleFilters`)}>Filter  <i className='fa-solid fa-filter'></i></Button>
           <div id='filters' className='hidden m-2'>
             <select className='custom-select mr-sm-2' id='inlineFormCustomSelect'>
               <option defaultValue>Genre</option>
