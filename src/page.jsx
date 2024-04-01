@@ -96,7 +96,7 @@ function Page() {
           title : title,
           text : text,
           linkText : linkText,
-          linkID : linkID,
+          linkID : Number(linkID),
         }
         pageDetails.current = RewriteArray(prev, passObj);
       }

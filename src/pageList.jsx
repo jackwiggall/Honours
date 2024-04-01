@@ -24,7 +24,7 @@ function LoopedPages(props) {
     {details.map((det) => (
       <div className='box' onClick={() => localStorage.setItem("currentPage",det.id)}>
         <Link to={"../library/create/page"}>
-          <button className='btn w-100' type='button'>
+          <button className='btn w-100' type='button' key={det.id}>
             {det.title}
           </button>
         </Link>

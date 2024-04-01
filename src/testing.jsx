@@ -25,7 +25,11 @@ function Testing() {
         pageDetails.current = JSON.parse(localStorage.getItem("pageDetails"));
 
         setgTitle(storyDetails.current[0].title); //incorrect position
-        handleLink(); //gives warning in console?
+        setpTitle(pageDetails.current[0].title);
+        setpText(pageDetails.current[0].text);
+        setLinkText(pageDetails.current[0].linkText);
+        setLinkID(pageDetails.current[0].linkID);
+        pageNum.current = pageDetails.current[0].linkID;
 
       } else if (run.current===false) {
         run.current = true;
@@ -40,18 +44,12 @@ function Testing() {
     const handleLink = () => {
 
         //e.preventDefault();
-        try {
-          pageNum.current = linkID;
-          setpTitle(pageDetails.current[pageNum.current].title);
-          setpText(pageDetails.current[pageNum.current].text);
-          setLinkText(pageDetails.current[pageNum.current].linkText);
-          setLinkID(pageDetails.current[pageNum.current].linkID);
-        }catch {
-          setpTitle("");
-          setpText("");
-          setLinkText("");
-          setLinkID(0);
-        }
+        console.log("change page");
+        pageNum.current = linkID;
+        setpTitle(pageDetails.current[pageNum.current].title);
+        setpText(pageDetails.current[pageNum.current].text);
+        setLinkText(pageDetails.current[pageNum.current].linkText);
+        setLinkID(pageDetails.current[pageNum.current].linkID);
     }
 
   return (
@@ -68,7 +66,9 @@ function Testing() {
               <h5 className='mr-2'>{pText}</h5>
           </div>
 
-          <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='submit' onSubmit={handleLink}>{linkText}</Button>
+          <form >
+            <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='button' onClick={handleLink}>{linkText}</Button>
+          </form>
 
         </div>
         </>
