@@ -22,7 +22,7 @@ function LoopedPages(props) {
   return (
     <div>
     {details.map((det) => (
-      <div className='box'>
+      <div className='box' onClick={() => localStorage.setItem("currentPage",det.id)}>
         <Link to={"../library/create/page"}>
           <button className='btn w-100' type='button'>
             {det.title}
@@ -40,6 +40,8 @@ function LoopedPages(props) {
 function DisplayPages() {
   var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
   //console.log(`Title: ${newDetails.ptitle}`);
+  localStorage.removeItem("currentPage");
+  localStorage.removeItem("links");
 
   return (
     <>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Button } from "@aws-amplify/ui-react";
 import Header from './header.jsx';
 
 function Testing() {
@@ -6,29 +7,52 @@ function Testing() {
     const [gTitle, setgTitle] = useState(''); //game title
     const [pTitle, setpTitle] = useState(''); //page title
     const [pText, setpText] = useState(''); //page text
+    const [linkText, setLinkText] = useState(''); //text for link
+    const [linkID, setLinkID] = useState(0); //link to what
 
-    const [run, setRun] = useState(false); //constant bool to prevent loop error
+    var pageNum = useRef(0);
+    var run = useRef(false);
+    var storyDetails = useRef([{}]);
+    var pageDetails = useRef([{}]);
 
   useEffect(()=>{
     //needs to inform user of validation of why error, ie no pages etc
-      if (localStorage.getItem("storyDetails")!==null&&localStorage.getItem("pageDetails")!==null && run === false) {
+      if (localStorage.getItem("storyDetails")!==null&&localStorage.getItem("pageDetails")!==null && run.current === false) {
 
-        setRun(true);
-        var storyDetails = {};
-        var pageDetails = [{}];
-        storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
-        pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
+        run.current = true;
 
-        //set form data
-        setgTitle(storyDetails.title);
-        setpTitle(pageDetails[0].title);
-        setpText(pageDetails[0].text);
-      } else {
-        setRun(true);
-        setgTitle("Error");
+        storyDetails.current = JSON.parse(localStorage.getItem("storyDetails"));
+        pageDetails.current = JSON.parse(localStorage.getItem("pageDetails"));
+
+        setgTitle(storyDetails.current[0].title); //incorrect position
+        handleLink(); //gives warning in console?
+
+      } else if (run.current===false) {
+        run.current = true;
+        //set other fields to error
+        setpTitle("");
+        setpText("");
+        setLinkText("");
+        setLinkID(0);
       }
     }, []); // empty array means only once
 
+    const handleLink = () => {
+
+        //e.preventDefault();
+        try {
+          pageNum.current = linkID;
+          setpTitle(pageDetails.current[pageNum.current].title);
+          setpText(pageDetails.current[pageNum.current].text);
+          setLinkText(pageDetails.current[pageNum.current].linkText);
+          setLinkID(pageDetails.current[pageNum.current].linkID);
+        }catch {
+          setpTitle("");
+          setpText("");
+          setLinkText("");
+          setLinkID(0);
+        }
+    }
 
   return (
         <>
@@ -43,6 +67,8 @@ function Testing() {
               <h3 className='mr-2'>{pTitle}</h3>
               <h5 className='mr-2'>{pText}</h5>
           </div>
+
+          <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='submit' onSubmit={handleLink}>{linkText}</Button>
 
         </div>
         </>

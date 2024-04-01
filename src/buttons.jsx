@@ -7,6 +7,9 @@ import Header from './header.jsx';
 
 function Buttons() {
 
+localStorage.removeItem("currentPage");
+localStorage.removeItem("links");
+
 return (
 <>
 <div className='bground'>
@@ -17,7 +20,7 @@ return (
         </div>
 
         <div className='box'>
-            <Link to={"../library/create/new_page"}><button className='btn w-100' type='button'>Create Page</button></Link>
+            <Link to={"../library/create/page"}><button className='btn w-100' type='button'>Create Page</button></Link>
         </div>
 
         <div className='box'>
