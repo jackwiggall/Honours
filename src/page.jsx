@@ -1,74 +1,170 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import UserProfile from './userProfile.jsx';
+import React, { useState, useRef } from 'react';
 import { Button } from "@aws-amplify/ui-react";
 import { useNavigate } from 'react-router-dom';
 
+import Header from './header.jsx';
+
+function LoopedLinks(props) {
+  //SHOWS ALL PAGE TITLES FOR LINKS
+  const details = props.details
+
+  return (
+    <div>
+    <select className='custom-select mt-2 mr-sm-2' onChange = {(e) => localStorage.setItem("links", e.target.value)}>
+      <option defaultValue>Page...</option>
+      {details.map((det) => (
+        <option value={det.id}>{det.title}</option>
+      ))}
+    </select>
+    </div>
+  )
+}
+
+function RewriteArray(props,page) {
+  //SHOWS ALL PAGE TITLES FOR LINKS
+
+    const details = props;
+    console.log(details);
+    console.log(page);
+    var newObj = [{}];
+    var count = 0;
+    details.forEach((det) =>
+
+      {if (det.id!==page.id) {
+        newObj[count]=det;
+      }else {
+        newObj[count]=page;
+      }
+      //console.log(newObj[count]);
+      count++;
+    })
+    console.log(newObj);
+    if (newObj!==[{}])
+    {
+      return newObj;
+    }else {
+      return props;
+    }
+
+}
+
 function Page() {
 
-  const [pID, setpID] = useState('');
-  const [ptitle, setpTitle] = useState('');
-  const [text, setText] = useState('');
+  var [prev, setPrev] = useState([{}]); //previous pages
 
-  const [run, setRun] = useState(false); //constant bool to prevent loop error
-  const [empty, setEmpty] = useState(true); //is list empty
+  //const [id, setID] = useState('');
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
+  const [linkText, setLinkText] = useState('');
 
   const nav = useNavigate();
+  var valid = useRef(0);
+  var empty = useRef(true);
+  var pageNum = useRef(-1);
+  var insertAt = useRef(0);
+  const pageDetails = useRef([{}]);
 
   const handleSubmit = (e) => {
 
       e.preventDefault();
 
-      const pageDetails = [
-         {
-           ptitle : ptitle,
-           text : text,
-         }
-      ]
+      var linkID = 0;
 
-      //checks if pages already exist
-      if (empty) {
-        localStorage.setItem("pageDetails", JSON.stringify(pageDetails));
-      }else { //NEED IDENTIFIER
-        localStorage.removeItem("pageDetails");
-        localStorage.setItem("pageDetails", JSON.stringify(pageDetails));
+      if (localStorage.getItem("links")!==null) {
+        linkID = localStorage.getItem("links");
       }
 
-      nav('../library/create/pagelist'); // Redirect to page list
+      if (pageNum.current===-1) { //new page so set to end
+        pageDetails.current = [
+           // Items before the insertion point:
+           ...prev.slice(insertAt),
+           // New item:
+           {
+             id: insertAt.current,
+             title : title,
+             text : text,
+             linkText : linkText,
+             linkID : linkID,
+           },
+           ...prev.slice(0, insertAt),
+         ];
+         setPrev(pageDetails.current);
+      } else {
+        console.log(`pageNum is ${pageNum.current}`)
+        const passObj = {
+          id: Number(pageNum.current),
+          title : title,
+          text : text,
+          linkText : linkText,
+          linkID : Number(linkID),
+        }
+        pageDetails.current = RewriteArray(prev, passObj);
+      }
 
+
+      //checks if pages already exist
+      if (empty.current) {
+        //1st page made
+        localStorage.setItem("pageDetails", JSON.stringify([{id: 0, title : title, text : text, linkText : linkText, linkID: linkID}]));
+      }else { //NEED IDENTIFIER
+        localStorage.removeItem("pageDetails");
+        localStorage.setItem("pageDetails", JSON.stringify(pageDetails.current));
+      }
+      //saves story details as json string
+
+      nav('../library/create/pagelist'); // Redirect to buttons
   }
 
-  const handleDelete = (e) => {
 
-  }
+  //check if other pages exist
+  if (localStorage.getItem("pageDetails")!==null && valid.current===0) {
 
+    //only run once
+    valid.current = 1;
 
-  if (localStorage.getItem("pageDetails")!==null && run === false) {
     //story details already exist, pull them
-
-    setRun(true); //prevents infinite loop
-    setEmpty(false); //pages already exist
-
     var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
+    setPrev(newDetails);
+    empty.current = false;
 
-    //set form data
-    //console.log(newDetails);
-    setpTitle(newDetails.ptitle);
-    setText(newDetails.text);
+    if (localStorage.getItem("currentPage")!==null) {
+      pageNum.current = localStorage.getItem("currentPage"); //sets to the id of editing page, is -1 for new page
+    }
+    if (pageNum.current===-1) { //set default values
+      //new page
+      setTitle("");
+      setText("");
+      setLinkText("Restart");
+      //console.log(newDetails.length); //returning 1?
+      insertAt.current = newDetails.length; // add new page to end of list
+    }else {
+      //editing existing page
+      insertAt.current = pageNum.current; //set id to new id
+      //console.log(insertAt.current);
+      //set form data
+      setTitle(newDetails[pageNum.current].title);
+      setText(newDetails[pageNum.current].text);
+      setLinkText(newDetails[pageNum.current].linkText);
+    }
+
+  }else if (valid.current===0) { //no pages already
+    valid.current = 1;
+
+    setTitle("");
+    setText("");
+    setLinkText("");
+    insertAt.current = 0; // add new page to end of list
+  }
 
     return (
       <>
       <div className='bground'>
-        <div className='d-block w-100' style={{textAlign: "right"}}>
-          <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library / Page</p>
-          <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-          <Link to={"../library/create/buttons"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-        </div>
+        <Header link={"../library/create/pagelist"} location={"LoA / Library  / Page"} />
 
         <form onSubmit={handleSubmit}>
             <div className='box'>
                 <h3 className='w-100'>Page Title</h3>
-                <input className='form-control mr-sm-2' type='search' placeholder='Title' onChange = {(e) => setpTitle(e.target.value)} value = {ptitle} required aria-label='Title' />
+                <input className='form-control mr-sm-2' type='search' placeholder='Title' onChange = {(e) => setTitle(e.target.value)} value = {title} required aria-label='Title' />
             </div>
 
             <div className='box'>
@@ -78,75 +174,21 @@ function Page() {
 
             <div className='box'>
                 <h3 className='w-100'>Link</h3>
-                <input className='form-control mr-sm-2' type='search' placeholder='Text' aria-label='Text' />
-                <LinkChoice details={ptitle} /> {/*Dropdown box of pages*/}
+                <input className='form-control mr-sm-2' type='search' placeholder='Link Text' onChange = {(e) => setLinkText(e.target.value)} value = {linkText} aria-label='Text' />
+                <LoopedLinks details={prev} />
             </div>
 
-            <Button variation="primary" className='w-100 my-2 my-sm-1 mr-1' type='submit' >Save</Button>
+            <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button>
           </form>
-
-          <form onSubmit={handleDelete}>
-            <Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit' >Delete</Button>
-          </form>
+            {/*<Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit' >Delete</Button> //Not implemented*/}
 
           </div>
           </>
     )
 
-  }else {
-    return (
-      <>
-      <div className='bground'>
-        <div className='d-block w-100' style={{textAlign: "right"}}>
-          <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library / Page</p>
-          <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-          <Link to={"../library/create/buttons"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-            <div className='box'>
-                <h3 className='w-100'>Page Title</h3>
-                <input className='form-control mr-sm-2' type='search' placeholder='Title' onChange = {(e) => setpTitle(e.target.value)} value = {ptitle} required aria-label='Title' />
-            </div>
-
-            <div className='box'>
-                <h3 className='w-100'>Text</h3>
-                <textarea className='form-control mr-sm-2' placeholder='Text' onChange = {(e) => setText(e.target.value)} value = {text} required aria-label='Text'></textarea>
-            </div>
-
-            <Button variation="primary" className='w-100 my-2 my-sm-1 mr-1' type='submit' >Save</Button>
-          </form>
-
-          <form onSubmit={handleDelete}>
-            <Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit' >Delete</Button>
-          </form>
-
-          </div>
-          </>
-    )
-  }
 
 }
+
+
+
 export default Page;
-
-function LinkChoice(props) {
-  //NEED TO ADD KEY
-  const details = props.details
-
-  try{
-  return (
-    <div>
-    <select className='custom-select mt-2 mr-sm-2'>
-      <option defaultValue>Page...</option>
-
-      {details.map((det) => (
-        <option>{det}</option>
-
-      ))}
-    </select>
-    </div>
-  )}
-  catch {
-    return; //can't display links
-  }
-}

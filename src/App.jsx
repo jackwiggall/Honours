@@ -5,7 +5,6 @@ import Home from './home.jsx';
 import Library from './library.jsx';
 import Create from './create.jsx';
 import Page from './page.jsx';
-import NewPage from './newPage.jsx';
 import PageList from './pageList.jsx';
 import Buttons from './buttons.jsx';
 import Tags from './tags.jsx';
@@ -30,7 +29,6 @@ return (
           <Route exact path='/library/create/buttons' element={<Buttons />} />
           <Route exact path='/library/create/tags' element={<Tags />} />
           <Route exact path='/library/create/page' element={<Page />} />
-          <Route exact path='/library/create/new_page' element={<NewPage />} />
           <Route exact path='/library/create/pagelist' element={<PageList />}/>
           <Route exact path='/library/create/testing' element={<Testing />}/>
 

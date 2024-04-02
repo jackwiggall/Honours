@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@aws-amplify/ui-react";
 import UserProfile from './userProfile.jsx';
@@ -16,6 +16,7 @@ function Create() {
 
   const [run, setRun] = useState(false); //constant bool to prevent loop error
 
+  var storyNum = useRef(-1);
 
   const nav = useNavigate();
 
@@ -23,12 +24,14 @@ function Create() {
 
       e.preventDefault();
 
-      const storyDetails = {
-        title : title,
-        shortDesc : shortDesc,
-        longDesc : longDesc,
-        genre : genre
-      }
+      const storyDetails = [
+        {
+          title : title,
+          shortDesc : shortDesc,
+          longDesc : longDesc,
+          genre : genre
+        }
+      ]
       localStorage.removeItem("storyDetails");
       localStorage.setItem("storyDetails", JSON.stringify(storyDetails));
       //saves story details as json string
@@ -43,12 +46,23 @@ function Create() {
     setRun(true); //prevents infinite loop
 
     var newDetails = JSON.parse(localStorage.getItem("storyDetails"));
+    if (localStorage.getItem("storyNum")!==null) {
+      storyNum.current = Number(localStorage.getItem("storyNum")); //add try catch security
+      //set form data
+      if (storyNum.current>-1) {
+        setTitle(newDetails[storyNum.current].title);
+        setSDesc(newDetails[storyNum.current].shortDesc);
+        setLDesc(newDetails[storyNum.current].longDesc);
+        setGen(newDetails[storyNum.current].genre);
+      }
+    }  else {
+      setTitle("");
+      setSDesc("");
+      setLDesc("");
+    }
 
-    //set form data
-    setTitle(newDetails.title);
-    setSDesc(newDetails.shortDesc);
-    setLDesc(newDetails.longDesc);
-    setGen(newDetails.genre);
+
+
 
   }
 

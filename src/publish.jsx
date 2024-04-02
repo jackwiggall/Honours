@@ -10,16 +10,17 @@ const client = generateClient();
 
 function PublishExtra() {
 
-  if (localStorage.getItem("id")!==null && localStorage.getItem("storyDetails")!==null) {
+  if (localStorage.getItem("id")!==null && localStorage.getItem("storyDetails")!==null && localStorage.getItem("storyNum")!==null) {
     const accountsID = localStorage.getItem("id");
 
     var newDetails = JSON.parse(localStorage.getItem("storyDetails"));
+    var storyNum = Number(localStorage.getItem("storyNum"));
 
     //set form data
-    const title = newDetails.title;
-    const shortDesc = newDetails.shortDesc;
-    const longDesc = newDetails.longDesc;
-    const genre = newDetails.genre;
+    const title = newDetails[storyNum].title;
+    const shortDesc = newDetails[storyNum].shortDesc;
+    const longDesc = newDetails[storyNum].longDesc;
+    const genre = newDetails[storyNum].genre;
     console.log(`${accountsID}, ${title}, ${shortDesc}, ${longDesc}, ${genre}`);
 
 

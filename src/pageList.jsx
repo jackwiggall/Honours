@@ -1,18 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UserProfile from './userProfile.jsx';
+import Header from './header.jsx';
 
 function Top() {
   return (
     <>
-    <div className='d-block w-100' style={{textAlign: "right"}}>
-      <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library  / Pages</p>
-      <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-      <Link to={"../library/create/buttons"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-    </div>
+    <Header link={"../library/create/buttons"} location={"LoA / Library  / Pages"} />
 
     <div className='box'>
-        <Link to={"../library/create/new_page"}><button className='btn w-100' type='button'>Create Page</button></Link>
+        <Link to={"../library/create/page"}><button className='btn w-100' type='button'>Create Page</button></Link>
     </div>
   </>
   )
@@ -20,16 +16,16 @@ function Top() {
 
 function LoopedPages(props) {
   //NEED TO ADD KEY
-  //SHOWS ALL PAGES 
+  //SHOWS ALL PAGES
   const details = props.details
 
   return (
     <div>
     {details.map((det) => (
-      <div className='box'>
+      <div className='box' onClick={() => localStorage.setItem("currentPage",det.id)}>
         <Link to={"../library/create/page"}>
-          <button className='btn w-100' type='button'>
-            {det.ptitle}
+          <button className='btn w-100' type='button' key={det.id}>
+            {det.title}
           </button>
         </Link>
       </div>
@@ -44,6 +40,8 @@ function LoopedPages(props) {
 function DisplayPages() {
   var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
   //console.log(`Title: ${newDetails.ptitle}`);
+  localStorage.removeItem("currentPage");
+  localStorage.removeItem("links");
 
   return (
     <>

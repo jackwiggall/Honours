@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import UserProfile from './userProfile.jsx';
+import React, { useState, useRef } from 'react';
 import { Button } from "@aws-amplify/ui-react";
 import { useNavigate } from 'react-router-dom';
+
+import Header from './header.jsx';
 
 function Tags() {
 
@@ -17,7 +17,7 @@ function Tags() {
   const [book, setBook] = useState(false);
 
 
-  const [run, setRun] = useState(false); //constant bool to prevent loop error
+  var run = useRef(false); //bool to prevent loop error
 
   const nav = useNavigate();
 
@@ -43,10 +43,10 @@ function Tags() {
 
   }
 
-  if (localStorage.getItem("tagList")!==null && run === false) {
+  if (localStorage.getItem("tagList")!==null && run.current === false) {
     //story details already exist, pull them
 
-    setRun(true); //prevents infinite loop
+    run.current = true; //prevents infinite loop
 
     var newDetails = JSON.parse(localStorage.getItem("tagList"));
 
@@ -62,16 +62,14 @@ function Tags() {
     setFilm(newDetails.film);
     setBook(newDetails.book);
 
+  }else if (run.current === false) {
+    run.current = true; //prevents infinite loop
   }
 
 return (
     <>
     <div className='bground'>
-      <div className='d-block w-100' style={{textAlign: "right"}}>
-        <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library / Tags</p>
-        <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-        <Link to={"../library/create/buttons"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-      </div>
+    <Header link={"../library/create/buttons"} location={"LoA / Library  / Tags"} />
 
         <div className='box'>
             <h3 className='w-100'>Tag List</h3>

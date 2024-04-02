@@ -1,53 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import UserProfile from './userProfile.jsx';
-import UserBody from './userBody.jsx';
-
-function TopTest() {
-
-}
+import React, { useState, useEffect, useRef } from 'react';
+import { Button } from "@aws-amplify/ui-react";
+import Header from './header.jsx';
 
 function Testing() {
 
     const [gTitle, setgTitle] = useState(''); //game title
     const [pTitle, setpTitle] = useState(''); //page title
     const [pText, setpText] = useState(''); //page text
+    const [linkText, setLinkText] = useState(''); //text for link
+    const [linkID, setLinkID] = useState(0); //link to what
 
-    const [run, setRun] = useState(false); //constant bool to prevent loop error
-    const [valid, setValid] = useState(false); //is game loadable
-
-  var storyDetails = {};
-  var pageDetails = [{}];
+    var pageNum = useRef(0);
+    var run = useRef(false);
+    var storyDetails = useRef([{}]);
+    var pageDetails = useRef([{}]);
 
   useEffect(()=>{
     //needs to inform user of validation of why error, ie no pages etc
-      if (localStorage.getItem("storyDetails")!==null&&localStorage.getItem("pageDetails")!==null && run === false) {
+      if (localStorage.getItem("storyDetails")!==null&&localStorage.getItem("pageDetails")!==null && run.current === false) {
 
-        setRun(true);
-        setValid(true);
-        storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
-        pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
+        run.current = true;
 
-        //set form data
-        setgTitle(storyDetails.title);
-        setpTitle(pageDetails[0].ptitle);
-        setpText(pageDetails[0].text);
-      } else {
-        setRun(true);
-        setgTitle("Error");
-        setValid(false);
+        storyDetails.current = JSON.parse(localStorage.getItem("storyDetails"));
+        pageDetails.current = JSON.parse(localStorage.getItem("pageDetails"));
+
+        setgTitle(storyDetails.current[0].title); //incorrect position
+        setpTitle(pageDetails.current[0].title);
+        setpText(pageDetails.current[0].text);
+        setLinkText(pageDetails.current[0].linkText);
+        setLinkID(pageDetails.current[0].linkID);
+        pageNum.current = pageDetails.current[0].linkID;
+
+      } else if (run.current===false) {
+        run.current = true;
+        //set other fields to error
+        setpTitle("");
+        setpText("");
+        setLinkText("");
+        setLinkID(0);
       }
     }, []); // empty array means only once
 
+    const handleLink = () => {
+
+        //e.preventDefault();
+        //console.log("change page");
+        pageNum.current = linkID;
+        setpTitle(pageDetails.current[pageNum.current].title);
+        setpText(pageDetails.current[pageNum.current].text);
+        setLinkText(pageDetails.current[pageNum.current].linkText);
+        setLinkID(pageDetails.current[pageNum.current].linkID);
+    }
 
   return (
         <>
         <div className='bground'>
-          <div className='d-block w-100' style={{textAlign: "right"}}>
-            <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / Library / Testing</p>
-            <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()} <i className='fa-solid fa-user' /></button></Link>
-            <Link to={"../library/create/buttons"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-          </div>
+        <Header link={"../library/create/buttons"} location={"LoA / Library  / Testing"} />
 
           <div className='box'>
               <h3 className='mr-2 text-center'>{gTitle}</h3> {/*Game Title*/}
@@ -57,6 +65,10 @@ function Testing() {
               <h3 className='mr-2'>{pTitle}</h3>
               <h5 className='mr-2'>{pText}</h5>
           </div>
+
+          <form >
+            <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='button' onClick={handleLink}>{linkText}</Button>
+          </form>
 
         </div>
         </>

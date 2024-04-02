@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import UserProfile from './userProfile.jsx';
 import { Button } from "@aws-amplify/ui-react";
 import { useNavigate } from 'react-router-dom';
+
+import UserProfile from './userProfile.jsx';
+import Header from './header.jsx';
 
 function Login() {
 
@@ -20,11 +21,7 @@ function Login() {
 return (
       <>
       <div className='bground'>
-        <div className='d-block w-100' style={{textAlign: "right"}}>
-          <p style={{textAlign: 'left'}} className='d-inline float-left m-2 ml-3'>LoA / User</p>
-          <Link to={"../user"}><button className='btn mb-1' type='button'>{UserProfile.getName()}<i className='fa-solid fa-user' /></button></Link>
-          <Link to={"../"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
-        </div>
+      <Header link={"../"} location={"LoA / User"} />
 
         <h3 className='text-center mb-5'>Login</h3>
 
