@@ -32,6 +32,7 @@ function LoopedResult() {
   }
   if (res.length!==0) {
     for (var i=0; i < res.length; i++) {
+      //console.log(res[i]);
       return (
         <DisplayResults data={res[i]}/>
       )
