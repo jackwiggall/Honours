@@ -45,9 +45,16 @@ function LoopedResult() {
 
 function DisplayResults(i) {
   //console.log(i.data); //takes a second to load
+
+  //set info details locally to save querying again for information page
+  const infoDet = {
+      title : i.data.title,
+      longDesc : i.data.longDesc,
+    }
+
     return (
       <>
-    <div className='box' onClick={() => localStorage.setItem("storyNum",0)}> {/*set to id*/}
+    <div className='box' onClick={() => localStorage.setItem("infoDets",JSON.stringify(infoDet))}> {/*set to id*/}
       <div className='card' style={{width: '100%', marginBottom: '20px'}}>
         <Link to={'./info'} style={{color: 'inherit', textDecoration: 'none'}}>
         <div className='card-body'>
