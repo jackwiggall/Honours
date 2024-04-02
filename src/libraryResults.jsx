@@ -9,7 +9,7 @@ function DisplayResult(i) {
 
     return (
       <>
-    <div className='box'>
+    <div className='box' onClick={() => localStorage.setItem("storyNum",0)}> {/*set to id*/}
       <div className='card' style={{width: '100%', marginBottom: '20px'}}>
         <Link to={'./create/buttons'} style={{color: 'inherit', textDecoration: 'none'}}>
         <div className='card-body'>

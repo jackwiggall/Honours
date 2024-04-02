@@ -180,7 +180,7 @@ function Page() {
 
             <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button>
           </form>
-            <Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit' >Delete</Button> {/*Not implemented*/}
+            {/*<Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit' >Delete</Button> //Not implemented*/}
 
           </div>
           </>

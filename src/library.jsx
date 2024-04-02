@@ -5,6 +5,7 @@ import LibraryResult from './libraryResults.jsx';
 import Header from './header.jsx';
 
 function Library() {
+  localStorage.removeItem("storyNum");
 return (
       <>
       <div className='bground'>
