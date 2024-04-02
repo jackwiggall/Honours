@@ -151,3 +151,51 @@ export const onDeleteAccounts = /* GraphQL */ `
     }
   }
 `;
+export const onCreatePages = /* GraphQL */ `
+  subscription OnCreatePages($filter: ModelSubscriptionPagesFilterInput) {
+    onCreatePages(filter: $filter) {
+      id
+      gameID
+      localID
+      title
+      text
+      linkText
+      linkID
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdatePages = /* GraphQL */ `
+  subscription OnUpdatePages($filter: ModelSubscriptionPagesFilterInput) {
+    onUpdatePages(filter: $filter) {
+      id
+      gameID
+      localID
+      title
+      text
+      linkText
+      linkID
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeletePages = /* GraphQL */ `
+  subscription OnDeletePages($filter: ModelSubscriptionPagesFilterInput) {
+    onDeletePages(filter: $filter) {
+      id
+      gameID
+      localID
+      title
+      text
+      linkText
+      linkID
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;

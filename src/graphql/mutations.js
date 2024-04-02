@@ -178,3 +178,60 @@ export const deleteAccounts = /* GraphQL */ `
     }
   }
 `;
+export const createPages = /* GraphQL */ `
+  mutation CreatePages(
+    $input: CreatePagesInput!
+    $condition: ModelPagesConditionInput
+  ) {
+    createPages(input: $input, condition: $condition) {
+      id
+      gameID
+      localID
+      title
+      text
+      linkText
+      linkID
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updatePages = /* GraphQL */ `
+  mutation UpdatePages(
+    $input: UpdatePagesInput!
+    $condition: ModelPagesConditionInput
+  ) {
+    updatePages(input: $input, condition: $condition) {
+      id
+      gameID
+      localID
+      title
+      text
+      linkText
+      linkID
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deletePages = /* GraphQL */ `
+  mutation DeletePages(
+    $input: DeletePagesInput!
+    $condition: ModelPagesConditionInput
+  ) {
+    deletePages(input: $input, condition: $condition) {
+      id
+      gameID
+      localID
+      title
+      text
+      linkText
+      linkID
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;

@@ -51,6 +51,7 @@ function Publish() {
       e.preventDefault();
       //ATTEMPT PUBLISH PROJECT
       PublishExtra();
+      //removes all pages and stories (need to change to remove single game)
       localStorage.removeItem("storyDetails");
       localStorage.removeItem("pageDetails");
       localStorage.removeItem("tagList");

@@ -5,6 +5,7 @@ type GameInfo @model @auth(rules: [{allow: public}]) {
   shortDesc: String
   longDesc: String
   CommentSection: [Comments] @hasMany(indexName: "byGameInfo", fields: ["id"])
+  PageList: [Pages] @hasMany(indexName: "byPages", fields: ["id"])
 }
 
 type Comments @model @auth(rules: [{allow: public}]) {
@@ -19,4 +20,14 @@ type Accounts @model @auth(rules: [{allow: public}]) {
   username: String! @primaryKey
   HasComments: [Comments] @hasMany(indexName: "byAccounts", fields: ["id"])
   HasGames: [GameInfo] @hasMany(indexName: "byAccounts", fields: ["id"])
+}
+
+type Pages @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  gameID: ID! @index(name: "byGameInfo")
+  localID: Int!
+  title : String!
+  text : String!
+  linkText : String
+  linkID : Int
 }
