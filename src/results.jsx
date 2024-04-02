@@ -9,7 +9,6 @@ function LoopedResult() {
   //NEED TO ADD KEY
   //SHOWS ALL PAGES
   var run = useRef(false);
-  var items = [{}];
   const [res, setRes] = useState([{}]);
 
   if (!run.current) {
@@ -49,6 +48,7 @@ function DisplayResults(i) {
 
   //set info details locally to save querying again for information page
   const infoDet = {
+      gameID : i.data.id,
       title : i.data.title,
       longDesc : i.data.longDesc,
     }

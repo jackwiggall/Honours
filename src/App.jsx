@@ -14,6 +14,7 @@ import User from './user.jsx';
 import Account from './account.jsx';
 import Login from './login.jsx';
 import Testing from './testing.jsx';
+import Play from './playing.jsx';
 
 import './App.css';
 
@@ -38,6 +39,8 @@ return (
 
           <Route exact path='/search' element={<Search />} />
           <Route exact path='/search/info' element={<Info />} />
+
+          <Route exact path='/play' element={<Play />} />
 
       </Routes>
       </BrowserRouter>

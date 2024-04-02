@@ -34,6 +34,7 @@ function PublishExtra() {
           title : title,
           shortDesc : shortDesc,
           longDesc : longDesc,
+          genre : genre,
         },
       },
     }).then(function(v) {
