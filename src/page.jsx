@@ -24,8 +24,8 @@ function RewriteArray(props,page) {
   //SHOWS ALL PAGE TITLES FOR LINKS
 
     const details = props;
-    console.log(details);
-    console.log(page);
+    //console.log(details);
+    //console.log(page);
     var newObj = [{}];
     var count = 0;
     details.forEach((det) =>
@@ -38,7 +38,7 @@ function RewriteArray(props,page) {
       //console.log(newObj[count]);
       count++;
     })
-    console.log(newObj);
+    //console.log(newObj);
     if (newObj!==[{}])
     {
       return newObj;
@@ -90,7 +90,7 @@ function Page() {
          ];
          setPrev(pageDetails.current);
       } else {
-        console.log(`pageNum is ${pageNum.current}`)
+        //console.log(`pageNum is ${pageNum.current}`)
         const passObj = {
           id: Number(pageNum.current),
           title : title,

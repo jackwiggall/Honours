@@ -34,7 +34,9 @@ function Create() {
       ]
       localStorage.removeItem("storyDetails");
       localStorage.setItem("storyDetails", JSON.stringify(storyDetails));
+      localStorage.setItem("storyNum",0);
       //saves story details as json string
+      //currently only allows a single story
 
       nav('./buttons'); // Redirect to buttons
 

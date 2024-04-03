@@ -209,3 +209,71 @@ export const listAccounts = /* GraphQL */ `
     }
   }
 `;
+export const getPages = /* GraphQL */ `
+  query GetPages($id: ID!) {
+    getPages(id: $id) {
+      id
+      gameID
+      localID
+      title
+      text
+      linkText
+      linkID
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listPages = /* GraphQL */ `
+  query ListPages(
+    $filter: ModelPagesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        gameID
+        localID
+        title
+        text
+        linkText
+        linkID
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const pagesByGameID = /* GraphQL used for playing page*/ `
+  query PagesByGameID(
+    $gameID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelPagesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    pagesByGameID(
+      gameID: $gameID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        localID
+        title
+        text
+        linkText
+        linkID
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
