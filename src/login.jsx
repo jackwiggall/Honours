@@ -11,28 +11,29 @@ import Header from './header.jsx';
 function CheckValid(i, u) {
 
   const client = generateClient();
-  console.log(i);
-  console.log(u);
-  const pageResults = client.graphql({ query: getAccounts, variables: {username: u},
-  }).then(function(v) { // `delay` returns a promise
-    //worked, pages should exist
+  //console.log(i);
+  //console.log(u);
+  if (i!==""&&u!=="") { //make sure not empty button press
+      const pageResults = client.graphql({ query: getAccounts, variables: {username: u},
+    }).then(function(v) { // `delay` returns a promise
+      //worked, pages should exist
 
-    console.log(v.data.getAccounts);
-    if (i===v.data.getAccounts.id&&u===v.data.getAccounts.username) {
-      UserProfile.setName(u);
-      UserProfile.setID(i);
-      //console.log("working?");
-    } else {
-      throw "not valid passkey";
-    }
-  })
-  .catch(function(v) {
-    // Or do something else if it is rejected
-    // (it would not happen in this example, since `reject` is not called).
-    console.log("Error, item not in db or doesnt match");
-  });
-
-
+      //console.log(v.data.getAccounts);
+      if (i===v.data.getAccounts.id&&u===v.data.getAccounts.username) {
+        UserProfile.setName(u);
+        UserProfile.setID(i);
+        //console.log("working?");
+      } else {
+        console.log("invalid passkey");
+        throw "not valid passkey"; //"Expected an error object to be thrown", still works
+      }
+    })
+    .catch(function(v) {
+      // Or do something else if it is rejected
+      // (it would not happen in this example, since `reject` is not called).
+      console.log("Error, item not in db or doesnt match");
+    });
+  }
 }
 
 function Login() {
@@ -47,7 +48,7 @@ function Login() {
 
       CheckValid(key,user);
       if (UserProfile.getName()!=="Login") {
-        nav("../");
+        nav("../user");
       }
   }
 

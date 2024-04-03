@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
 import UserProfile from './userProfile.jsx';
 
+
+function ShowKey() {
+
+  const [mess, setMess] = useState("View Passkey"); //message
+  const [pin, setPin] = useState("**************"); //passkey
+
+  const handleKey = (e) => {
+
+      e.preventDefault();
+
+      if (mess==="View Passkey")
+      {
+        setMess("Hide Passkey");
+        setPin(UserProfile.getID());
+      }else {
+        setMess("View Passkey");
+        setPin("**************");
+      }
+    }
+  return (
+    <>
+      <div className='box' onClick={handleKey}>
+           <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >{mess}</button>
+      </div>
+
+      <h5>{pin}</h5>
+    </>
+  )
+}
 
 function UserBody() {
     if (localStorage.getItem("name")!==null) {
@@ -10,9 +39,14 @@ function UserBody() {
           <h2 className='centre' style={{marginTop: "5px"}}>Hello {UserProfile.getName()}</h2>
           <div className='centre'>
 
+          <ShowKey />
+
+
+
             <div className='box' onClick={() => UserProfile.setName("Login")}>
-      			     <Link to={"../"}> <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Log Out</button></Link> {/*Link doesnt work, change to reload page*/}
+      			     <Link to={"../"}> <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Log Out</button></Link>
             </div>
+
           </div>
         </div>
       )
