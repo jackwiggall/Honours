@@ -28,12 +28,9 @@ export const listGameInfos = /* GraphQL */ `
     listGameInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        accountsID
         title
         shortDesc
         longDesc
-        createdAt
-        updatedAt
         __typename
       }
       nextToken
