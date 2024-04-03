@@ -249,7 +249,7 @@ export const listPages = /* GraphQL */ `
     }
   }
 `;
-export const pagesByGameID = /* GraphQL */ `
+export const pagesByGameID = /* GraphQL used for playing page*/ `
   query PagesByGameID(
     $gameID: ID!
     $sortDirection: ModelSortDirection
@@ -265,15 +265,11 @@ export const pagesByGameID = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        id
-        gameID
         localID
         title
         text
         linkText
         linkID
-        createdAt
-        updatedAt
         __typename
       }
       nextToken
