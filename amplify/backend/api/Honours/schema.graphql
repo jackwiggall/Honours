@@ -5,7 +5,6 @@ type GameInfo @model @auth(rules: [{allow: public}]) {
   shortDesc: String
   longDesc: String
   CommentSection: [Comments] @hasMany(indexName: "byGameInfo", fields: ["id"])
-  PageList: [Pages] @hasMany(indexName: "byPages", fields: ["id"])
 }
 
 type Comments @model @auth(rules: [{allow: public}]) {
