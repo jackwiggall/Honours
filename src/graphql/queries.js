@@ -19,7 +19,7 @@ export const getGameInfo = /* GraphQL */ `
     }
   }
 `;
-export const listGameInfos = /* GraphQL */ `
+export const listGameInfos = /* GraphQL Used for search results, results.jsx*/ `
   query ListGameInfos(
     $filter: ModelGameInfoFilterInput
     $limit: Int
@@ -38,7 +38,7 @@ export const listGameInfos = /* GraphQL */ `
     }
   }
 `;
-export const gameInfosByAccountsID = /* GraphQL */ `
+export const gameInfosByAccountsID = /* GraphQL Used for getting the gameID of a published game to publish pages, publish.jsx*/ `
   query GameInfosByAccountsID(
     $accountsID: ID!
     $sortDirection: ModelSortDirection
@@ -160,21 +160,11 @@ export const commentsByGameID = /* GraphQL */ `
     }
   }
 `;
-export const getAccounts = /* GraphQL */ `
+export const getAccounts = /* GraphQL Used for login validation, login.jsx*/ `
   query GetAccounts($username: String!) {
     getAccounts(username: $username) {
       id
       username
-      HasComments {
-        nextToken
-        __typename
-      }
-      HasGames {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
       __typename
     }
   }
@@ -246,7 +236,7 @@ export const listPages = /* GraphQL */ `
     }
   }
 `;
-export const pagesByGameID = /* GraphQL used for playing page*/ `
+export const pagesByGameID = /* GraphQL Used for playing.jsx */ `
   query PagesByGameID(
     $gameID: ID!
     $sortDirection: ModelSortDirection

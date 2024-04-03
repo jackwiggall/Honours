@@ -1,7 +1,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createGameInfo = /* GraphQL */ `
+export const createGameInfo = /* GraphQL Used for publishing a game, publish.jsx*/ `
   mutation CreateGameInfo(
     $input: CreateGameInfoInput!
     $condition: ModelGameInfoConditionInput
@@ -178,7 +178,7 @@ export const deleteAccounts = /* GraphQL */ `
     }
   }
 `;
-export const createPages = /* GraphQL */ `
+export const createPages = /* GraphQL Used for creating pages, publish.jsx */ `
   mutation CreatePages(
     $input: CreatePagesInput!
     $condition: ModelPagesConditionInput
