@@ -28,6 +28,7 @@ export const listGameInfos = /* GraphQL Used for search results, results.jsx*/ `
     listGameInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        accountsID
         title
         shortDesc
         longDesc
@@ -163,6 +164,15 @@ export const commentsByGameID = /* GraphQL */ `
 export const getAccounts = /* GraphQL Used for login validation, login.jsx*/ `
   query GetAccounts($username: String!) {
     getAccounts(username: $username) {
+      id
+      username
+      __typename
+    }
+  }
+`;
+export const getAccountsByID = /* GraphQL Used for getting username, results.jsx*/ `
+  query GetAccountsByID($id: String!) {
+    getAccountsByID(id: $id) {
       id
       username
       __typename
