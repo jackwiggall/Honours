@@ -13,23 +13,27 @@ if (localStorage.getItem("infoDets")!==null) {
   var infoDet = JSON.parse(localStorage.getItem("infoDets"));
   if (infoDet.user===undefined) {
     //fetch username and rewrite infoDet
-    var username = "";
+    infoDet.user = "User"; //cant create query to search by id as the username is primarykey
     //set info details locally to save querying again for information page
     //get username from id
-    const client = generateClient();
+    /*const client = generateClient();
     const userResults = client.graphql({ query: getAccountsByID, variables: {id: infoDet.userID}
       }).then(function(v) { // `delay` returns a promise
         //worked, pages should exist
         console.log(v);
+        infoDet.user = "Success";
+        localStorage.setItem("infoDets",JSON.stringify(infoDet));
 
       })
       .catch(function(v) {
         // Or do something else if it is rejected
         // (it would not happen in this example, since `reject` is not called).
         console.log("Error, cant find username");
-      });
+        infoDet.user = "Error";
+        localStorage.setItem("infoDets",JSON.stringify(infoDet));
+      });*/
   }else {
-    console.log(infoDet.user);
+    //console.log(infoDet.user);
   }
 
   return (
@@ -86,8 +90,8 @@ if (localStorage.getItem("infoDets")!==null) {
             <h4 className='d-inline-block float-right'> 2 <i className='fa-solid fa-eye'></i> {/*<!--Views-->*/}
             3 <i className='fa-solid fa-heart'></i> {/*<!--Likes-->*/}
             1 <i className='fa-solid fa-comment'></i></h4> {/*<!--Comments-->*/}
-            <p>By: User</p>
-            <p>{'An error must have occured because you shouldn`t be seeing this page. InfoDets from local storage appears to be missing.'}</p>
+            <p>By: Error</p>
+            <p>{'An error must have occured because you shouldn`t be seeing this text. InfoDets from local storage appears to be missing.'}</p>
             <p>#tags #cool #mystery</p>
           </div>
 

@@ -14,22 +14,29 @@ function LoopedResult() {
     //still runs twice, doesnt prevent single run
     run.current = true;
 
-    const client = generateClient();
-    const results = client.graphql({ query: listGameInfos, limit: 3}) //change limit later, just to save network/query space
-    .then(function(v) { // `delay` returns a promise
-      //console.log(v.data.listGameInfos.items); // Log the value once it is resolved
+    if (localStorage.getItem("searchRes")===null) {
+      const client = generateClient();
+      const results = client.graphql({ query: listGameInfos, limit: 3}) //change limit later, just to save network/query space
+      .then(function(v) { // `delay` returns a promise
+        //console.log(v.data.listGameInfos.items); // Log the value once it is resolved
 
-        setRes(v.data.listGameInfos.items);
+          setRes(v.data.listGameInfos.items);
+          localStorage.setItem("searchRes",JSON.stringify(v.data.listGameInfos.items));
 
-    }) //change limit once working
-    .catch(function(v) {
-      // Or do something else if it is rejected
-      // (it would not happen in this example, since `reject` is not called).
-      console.log("error");
-    });
+      }) //change limit once working
+      .catch(function(v) {
+        // Or do something else if it is rejected
+        // (it would not happen in this example, since `reject` is not called).
+        console.log("error");
+      });
+    }else {
+      var searchRes = JSON.parse(localStorage.getItem("searchRes"));
+      //console.log(searchRes);
+      setRes(searchRes);
+    }
   }
   if (res.length!==0) {
-    console.log(res.length);
+    //console.log(res.length);
     //console.log(res);
 
     //loop through results and display
@@ -50,7 +57,7 @@ function LoopedResult() {
 }
 
 function DisplayResults(i) {
-  console.log(i); //takes a second to load
+  //console.log(i); //takes a second to load
 
   if (i.data!==undefined) {
     const infoDet = {
