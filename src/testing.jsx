@@ -34,10 +34,12 @@ function Testing() {
       } else if (run.current===false) {
         run.current = true;
         //set other fields to error
-        setpTitle("");
-        setpText("");
+        setgTitle("Error");
+        setpTitle("Error");
+        setpText("Error");
         setLinkText("");
         setLinkID(0);
+        pageDetails.current = [{title: "Error", text: "Error", linkText: "", linkID: 0}]; //prevents loading undefined data on pressing nav button
       }
     }, []); // empty array means only once
 

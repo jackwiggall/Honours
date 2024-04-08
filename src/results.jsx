@@ -70,7 +70,7 @@ function DisplayResults(i) {
       return (
         <>
       <div className='box' onClick={() => localStorage.setItem("infoDets",JSON.stringify(infoDet))}> {/*set to id*/}
-        <div className='card' style={{width: '100%', marginBottom: '20px'}}>
+        <div className='card' style={{width: '100%'}}>
           <Link to={'./info'} style={{color: 'inherit', textDecoration: 'none'}}>
           <div className='card-body'>
             <h5 className='card-title'>{i.data.title}</h5>

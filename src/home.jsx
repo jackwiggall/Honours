@@ -18,10 +18,14 @@ return (
     			     <Link to={"./search"}> <button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Read</button></Link>
           </div>
 
-          <h2>OR</h2>
+          {/*<h2>OR</h2>*/}
 
           <div className='box'>
     			     <Link to={"./library"}><button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Write</button></Link>
+          </div>
+
+          <div className='box'>
+    			     <Link to={"https://forms.gle/BrYASmBmZRSsSVjQ7"}><button className='btn w-100 my-2 my-sm-0 mr-1' type='button' >Feedback</button></Link>
           </div>
 
     		</div>

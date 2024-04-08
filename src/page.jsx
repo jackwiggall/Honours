@@ -7,14 +7,13 @@ import Header from './header.jsx';
 function LoopedLinks(props) {
   //SHOWS ALL PAGE TITLES FOR LINKS
   const details = props.details
-
   return (
     <div>
     <select className='custom-select mt-2 mr-sm-2' onChange = {(e) => localStorage.setItem("links", e.target.value)}>
-      <option defaultValue>Page...</option>
       {details.map((det) => (
-        <option value={det.id}>{det.title}</option>
-      ))}
+          <option value={det.id}>{det.title}</option>
+        )
+      )}
     </select>
     </div>
   )
@@ -64,6 +63,7 @@ function Page() {
   var insertAt = useRef(0);
   const pageDetails = useRef([{}]);
 
+  //create page
   const handleSubmit = (e) => {
 
       e.preventDefault();
@@ -90,7 +90,7 @@ function Page() {
          ];
          setPrev(pageDetails.current);
       } else {
-        //console.log(`pageNum is ${pageNum.current}`)
+        //gets current page
         const passObj = {
           id: Number(pageNum.current),
           title : title,
@@ -100,7 +100,6 @@ function Page() {
         }
         pageDetails.current = RewriteArray(prev, passObj);
       }
-
 
       //checks if pages already exist
       if (empty.current) {
@@ -114,6 +113,33 @@ function Page() {
 
       nav('../library/create/pagelist'); // Redirect to buttons
   }
+
+  //delete page button trigger
+  const handleDel = (e) => {
+
+      e.preventDefault();
+      console.log(prev);
+      //check if page in list
+      if (localStorage.getItem("pageDetails")!==null && pageNum.current!==-1) {
+        console.log(`del ${pageNum.current}`);
+        var newArray = prev;
+
+        newArray.splice(pageNum.current, 1);
+
+        for (var i = pageNum.current; i < newArray.length; i++) {
+          //change all ID's down from deleted page
+          newArray[i].id--;
+        }
+
+        //need to cut out current page, shift all down one
+        console.log(newArray);
+        //console.log(prev);
+        localStorage.setItem("pageDetails",JSON.stringify(newArray));
+
+      }
+
+      nav('../library/create/pagelist'); // Redirect to buttons
+    }
 
 
   //check if other pages exist
@@ -180,7 +206,10 @@ function Page() {
 
             <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button>
           </form>
-            {/*<Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit' >Delete</Button> //Not implemented*/}
+
+          <form onSubmit={handleDel}>
+            <Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit'>Delete</Button>
+          </form>
 
           </div>
           </>
