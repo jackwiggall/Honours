@@ -21,7 +21,7 @@ if (!run.current) {
   return (
       <>
       <div className='bground'>
-      <Header link={"../"} location={"LoA / Search"} />
+      <Header link={"../"} location={"tB / Search"} />
 
           <form className='form-inline'>
             <Button variation='primary' className='my-2 my-sm-2 w-100' onClick={handleSearch} type='button'>Search  <i className='fa-solid fa-magnifying-glass'></i></Button>

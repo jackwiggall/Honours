@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
 import UserProfile from './userProfile.jsx';
+import { useEffect } from 'react';
 
 function Header({link, location}) {
 
-if (location!=="LoA") {
+  useEffect(() => {
+      document.title = location;
+    }, []);
+
+
+if (location!=="tB") {
   return (
   <>
     <div className='d-block w-100' style={{textAlign: "right"}}>

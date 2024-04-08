@@ -134,7 +134,13 @@ function Page() {
         //need to cut out current page, shift all down one
         console.log(newArray);
         //console.log(prev);
-        localStorage.setItem("pageDetails",JSON.stringify(newArray));
+        if (newArray[0]!==undefined) {
+          localStorage.setItem("pageDetails",JSON.stringify(newArray));
+        }else {
+          console.log("emkpty");
+          localStorage.removeItem("pageDetails");
+        }
+
 
       }
 
@@ -185,7 +191,7 @@ function Page() {
     return (
       <>
       <div className='bground'>
-        <Header link={"../library/create/pagelist"} location={"LoA / Library  / Page"} />
+        <Header link={"../library/create/pagelist"} location={"tB / Library  / Page"} />
 
         <form onSubmit={handleSubmit}>
             <div className='box'>

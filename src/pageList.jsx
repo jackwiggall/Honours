@@ -5,7 +5,7 @@ import Header from './header.jsx';
 function Top() {
   return (
     <>
-    <Header link={"../library/create/buttons"} location={"LoA / Library  / Pages"} />
+    <Header link={"../library/create/buttons"} location={"tB / Library  / Pages"} />
 
     <div className='box'>
         <Link to={"../library/create/page"}><button className='btn w-100' type='button'>Create Page</button></Link>

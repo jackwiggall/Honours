@@ -9,7 +9,7 @@ function Library() {
 return (
       <>
       <div className='bground'>
-      <Header link={"../"} location={"LoA / Library"} />
+      <Header link={"../"} location={"tB / Library"} />
         <LibraryBody />
       </div>
     	</>

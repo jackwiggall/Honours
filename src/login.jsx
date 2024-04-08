@@ -55,7 +55,7 @@ function Login() {
 return (
       <>
       <div className='bground'>
-      <Header link={"../"} location={"LoA / User"} />
+      <Header link={"../"} location={"tB / User"} />
 
         <h3 className='text-center mb-3'>Login</h3>
 

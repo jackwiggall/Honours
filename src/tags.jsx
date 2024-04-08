@@ -69,7 +69,7 @@ function Tags() {
 return (
     <>
     <div className='bground'>
-    <Header link={"../library/create/buttons"} location={"LoA / Library  / Tags"} />
+    <Header link={"../library/create/buttons"} location={"tB / Library  / Tags"} />
 
         <div className='box'>
             <h3 className='w-100'>Tag List</h3>

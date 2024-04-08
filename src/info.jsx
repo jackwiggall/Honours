@@ -39,7 +39,7 @@ if (localStorage.getItem("infoDets")!==null) {
   return (
   <>
   <div className='bground'>
-  <Header link={"../search"} location={"LoA / Search"} />
+  <Header link={"../search"} location={"tB / Search"} />
 
           <div className='box'>
             <h3 className='d-inline-block'>{infoDet.title}</h3> {/*<!--Name-->*/}
@@ -64,7 +64,7 @@ if (localStorage.getItem("infoDets")!==null) {
             <div className='container'>
               <div className='row'>
                 <div className='col-sm-2'>
-                  <b className='text-center'>User</b>
+                  <tB className='text-center'>User</b>
                 </div>
                 <div className='col-7'>
                   <p className='text-faded mb-1'>03/01/2023 16:31:08</p>
@@ -83,7 +83,7 @@ if (localStorage.getItem("infoDets")!==null) {
   return (
   <>
   <div className='bground'>
-  <Header link={"../search"} location={"LoA / Search"} />
+  <Header link={"../search"} location={"tB / Search"} />
 
           <div className='box'>
             <h3 className='d-inline-block'>{'Error'}</h3> {/*<!--Name-->*/}
@@ -106,7 +106,7 @@ if (localStorage.getItem("infoDets")!==null) {
             <div className='container'>
               <div className='row'>
                 <div className='col-sm-2'>
-                  <b className='text-center'>User</b>
+                  <tB className='text-center'>User</b>
                 </div>
                 <div className='col-7'>
                   <p className='text-faded mb-1'>03/01/2023 16:31:08</p>
