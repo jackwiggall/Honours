@@ -6,7 +6,7 @@ function User() {
   return (
         <>
         <div className='bground'>
-        <Header link={"../"} location={"LoA / User"} />
+        <Header link={"../"} location={"tB / User"} />
             <UserBody />
         </div>
         </>

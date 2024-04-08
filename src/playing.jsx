@@ -114,7 +114,7 @@ function Play() {
   return (
         <>
         <div className='bground'>
-        <Header link={"../search/info"} location={"LoA / Library / Play"} />
+        <Header link={"../search/info"} location={"tB / Library / Play"} />
 
           <div className='box'>
               <h3 className='mr-2 text-center'>{gTitle}</h3> {/*Game Title*/}

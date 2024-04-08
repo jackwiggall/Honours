@@ -13,7 +13,7 @@ localStorage.removeItem("links");
 return (
 <>
 <div className='bground'>
-  <Header link={"../library"} location={"LoA / Library / Create"} />
+  <Header link={"../library"} location={"tB / Library / Create"} />
 
         <div className='box'>
             <Link to={"../library/create"}><button className='btn w-100' type='button'>Story Details</button></Link>

@@ -1,38 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@aws-amplify/ui-react";
 import { useNavigate } from 'react-router-dom';
+
+import { generateClient } from 'aws-amplify/api';
+import { getAccounts } from './graphql/queries';
 
 import UserProfile from './userProfile.jsx';
 import Header from './header.jsx';
 
+function CheckValid(i, u) {
+
+  const client = generateClient();
+  //console.log(i);
+  //console.log(u);
+  if (i!==""&&u!=="") { //make sure not empty button press
+      const pageResults = client.graphql({ query: getAccounts, variables: {username: u},
+    }).then(function(v) { // `delay` returns a promise
+      //worked, pages should exist
+
+      //console.log(v.data.getAccounts);
+      if (i===v.data.getAccounts.id&&u===v.data.getAccounts.username) {
+        UserProfile.setName(u);
+        UserProfile.setID(i);
+        //console.log("working?");
+      } else {
+        console.log("invalid passkey");
+        throw "not valid passkey"; //"Expected an error object to be thrown", still works
+      }
+    })
+    .catch(function(v) {
+      // Or do something else if it is rejected
+      // (it would not happen in this example, since `reject` is not called).
+      console.log("Error, item not in db or doesnt match");
+    });
+  }
+}
+
 function Login() {
 
   const nav = useNavigate();
+  const [user, setUser] = useState("");
+  const [key, setKey] = useState("");
 
   const handleSubmit = (e) => {
 
       e.preventDefault();
 
-      UserProfile.setName("Admin");
-      UserProfile.setID('8e7829a9-ec07-4b64-8170-d31b7101522e');
-      nav("../");
+      CheckValid(key,user);
+      if (UserProfile.getName()!=="Login") {
+        nav("../user");
+      }
   }
 
 return (
       <>
       <div className='bground'>
-      <Header link={"../"} location={"LoA / User"} />
+      <Header link={"../"} location={"tB / User"} />
 
-        <h3 className='text-center mb-5'>Login</h3>
+        <h3 className='text-center mb-3'>Login</h3>
 
         <form onSubmit={handleSubmit}>
         <div className='box'>
             <h4 className='mr-2'>Username</h4>
-            <input className='form-control mr-sm-2' id='username' type='comment' placeholder='Username' required aria-label='Username'/>
+            <input className='form-control mr-sm-2' id='username' type='comment' onChange={(e) => setUser(e.target.value)} value={user} placeholder='Username' required aria-label='Username'/>
         </div>
         <div className='box'>
             <h4 className='mr-2'>Passkey</h4>
-            <input className='form-control mr-sm-2' id='passkey' type='comment' placeholder='Passkey' required aria-label='Passkey'/>
+            <input className='form-control mr-sm-2' id='passkey' type='comment' onChange={(e) => setKey(e.target.value)} value={key} placeholder='Passkey' required aria-label='Passkey'/>
         </div>
 
         <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button> {/*Set to username*/}

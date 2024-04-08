@@ -14,10 +14,10 @@ return (
           <Link to={"../"}><button className='btn mb-1' type='button'>Close <i className='fa-solid fa-xmark' /></button></Link>
         </div>
 
-        <h3 className='text-center mb-5'>Create Account</h3>
+        <h3 className='text-center mb-3'>Create Account</h3>
           <div className='box'>
               <AccountsCreateForm />
-          </div>
+          </div> {/*Give user the passkey on success*/}
 
       </div>
     	</>

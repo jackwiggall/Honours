@@ -34,10 +34,12 @@ function Testing() {
       } else if (run.current===false) {
         run.current = true;
         //set other fields to error
-        setpTitle("");
-        setpText("");
+        setgTitle("Error");
+        setpTitle("Error");
+        setpText("Error");
         setLinkText("");
         setLinkID(0);
+        pageDetails.current = [{title: "Error", text: "Error", linkText: "", linkID: 0}]; //prevents loading undefined data on pressing nav button
       }
     }, []); // empty array means only once
 
@@ -55,7 +57,7 @@ function Testing() {
   return (
         <>
         <div className='bground'>
-        <Header link={"../library/create/buttons"} location={"LoA / Library  / Testing"} />
+        <Header link={"../library/create/buttons"} location={"tB / Library  / Testing"} />
 
           <div className='box'>
               <h3 className='mr-2 text-center'>{gTitle}</h3> {/*Game Title*/}

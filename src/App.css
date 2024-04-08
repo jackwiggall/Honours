@@ -9,6 +9,12 @@
   z-index:2;
 }
 
+.w-70 {
+  /**Used for search bar length**/
+  max-width: 100%;
+  min-width: 82%;
+}
+
 body {
   width:auto;
   height:auto;
@@ -51,9 +57,6 @@ body:after {
   padding:5px;
 }
 
-.hidden {
-  display:none;
-}
 
 .box {
   background: #B5838D;

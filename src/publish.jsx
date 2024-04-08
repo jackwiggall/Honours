@@ -113,12 +113,16 @@ function Publish() {
 
       e.preventDefault();
       //ATTEMPT PUBLISH PROJECT
-      PublishExtra();
-      //removes all pages and stories (need to change to remove single game)
-      localStorage.removeItem("storyDetails");
-      localStorage.removeItem("pageDetails");
-      localStorage.removeItem("tagList");
-      nav('../library'); // Redirect to library
+      if (localStorage.getItem("pageDetails")!==null) {
+        PublishExtra();
+        //removes all pages and stories (need to change to remove single game)
+        localStorage.removeItem("storyDetails");
+        localStorage.removeItem("pageDetails");
+        localStorage.removeItem("tagList");
+        nav('../library'); // Redirect to library
+      } else {
+        console.log("No pages to publish!");
+      }
     }
 
 return (
