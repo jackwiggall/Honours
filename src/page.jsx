@@ -20,7 +20,7 @@ function LoopedLinks(props) {
 }
 
 function RewriteArray(props,page) {
-  //SHOWS ALL PAGE TITLES FOR LINKS
+  //check if already in array and rewrite page if so
 
     const details = props;
     //console.log(details);
@@ -44,7 +44,6 @@ function RewriteArray(props,page) {
     }else {
       return props;
     }
-
 }
 
 function Page() {
@@ -59,6 +58,7 @@ function Page() {
   const nav = useNavigate();
   var valid = useRef(0);
   var empty = useRef(true);
+  var storyNum = useRef(-1);
   var pageNum = useRef(-1);
   var insertAt = useRef(0);
   const pageDetails = useRef([{}]);

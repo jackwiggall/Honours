@@ -8,7 +8,7 @@ function DisplayResult(i) {
 
     return (
       <>
-    <div className='box' onClick={() => localStorage.setItem("storyNum",0)}> {/*set to id*/}
+    <div className='box' onClick={() => localStorage.setItem("storyNum",i.data.localID)}> {/*set to id*/}
       <div className='card' style={{width: '100%'}}>
         <Link to={'./create/buttons'} style={{color: 'inherit', textDecoration: 'none'}}>
         <div className='card-body'>
@@ -51,12 +51,14 @@ const [lib, setLib] = useState([{}]);
        <h3 className='text-center mb-5'>Your library is empty!</h3>
      ) //still fires more than once
    }else {
-     for (var i=0; i < len.current; i++) {
-       return (
-         <DisplayResult data={lib[i]}/>
-       )
-    }
+     return (
+         <>
+           {lib.map((data) => (
+             // Return the element. Also pass key
+             <DisplayResult data={data}/>
+           ))}
+         </>
+        )   
    }
-
 }
 export default LibraryResult;
