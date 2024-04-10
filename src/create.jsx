@@ -4,71 +4,151 @@ import { Button } from "@aws-amplify/ui-react";
 import UserProfile from './userProfile.jsx';
 import { useNavigate } from 'react-router-dom';
 
+function RewriteArray(props,page) {
+  //check if already in array and rewrite page if so
+
+    const details = props;
+    //console.log(details);
+    //console.log(page);
+    var newObj = [{}];
+    var count = 0;
+    details.forEach((det) =>
+
+      {if (det.localID!==page.localID) {
+        newObj[count]=det;
+      }else {
+        newObj[count]=page;
+      }
+      //console.log(newObj[count]);
+      count++;
+    })
+    //console.log(newObj);
+    if (newObj!==[{}])
+    {
+      return newObj;
+    }else {
+      return props;
+    }
+}
+
 
 function Create() {
 
 //https://stackoverflow.com/questions/23929432/submit-form-in-reactjs-using-button-element
+  const [prev, setPrev] = useState([{}]); //previous storyDetails
+
   const [title, setTitle] = useState('');
   const [shortDesc, setSDesc] = useState('');
   const [longDesc, setLDesc] = useState('');
   //above required
   const [genre, setGen] = useState('');
-
   const [run, setRun] = useState(false); //constant bool to prevent loop error
 
   var storyNum = useRef(-1);
+  var localID = useRef(0);
+  var newEntry = useRef(true);
+  var firstEntry = useRef(true);
 
   const nav = useNavigate();
 
   const handleSubmit = (e) => {
 
       e.preventDefault();
-
-      const storyDetails = [
-        {
-          title : title,
-          shortDesc : shortDesc,
-          longDesc : longDesc,
-          genre : genre
+      //console.log(prev);
+      //console.log(localID.current);
+      var storyDetails = [{}];
+      //first story
+      if (firstEntry.current!==true) {
+        if (newEntry.current) {
+          //new story
+          storyDetails = [
+            ...prev.slice(0,localID.current),
+            // New item:
+            {
+              localID : localID.current,
+              title : title,
+              shortDesc : shortDesc,
+              longDesc : longDesc,
+              genre : genre
+            },
+            ...prev.slice(localID.current),
+          ];
+          localStorage.setItem("storyNum",localID.current);
+          //set pages to empty
+          var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
+          var newPages = [
+          ...pageDetails.slice(0,localID.current),
+          {},
+          ...pageDetails.slice(localID.current),
+        ];
+          localStorage.setItem("pageDetails",JSON.stringify(newPages));
+        }else {
+          //edit story when some already exist
+          const newDetails =
+            {
+              localID : localID.current,
+              title : title,
+              shortDesc : shortDesc,
+              longDesc : longDesc,
+              genre : genre,
+            };
+          storyDetails = RewriteArray(prev, newDetails);
+          localStorage.setItem("storyNum",storyNum.current);
+          localStorage.setItem("pageDetails",JSON.stringify([{}]));
         }
-      ]
+      }else {
+        //first story
+        //console.log("first");
+        storyDetails = [
+          {
+            localID : 0,
+            title : title,
+            shortDesc : shortDesc,
+            longDesc : longDesc,
+            genre : genre
+          },
+        ];
+        localStorage.setItem("storyNum",0);
+        localStorage.setItem("pageDetails",JSON.stringify([{}]));
+      }
       localStorage.removeItem("storyDetails");
       localStorage.setItem("storyDetails", JSON.stringify(storyDetails));
-      localStorage.setItem("storyNum",0);
+
       //saves story details as json string
       //currently only allows a single story
 
       nav('./buttons'); // Redirect to buttons
-
   }
 
   if (localStorage.getItem("storyDetails")!==null && run === false) {
     //story details already exist, pull them
 
     setRun(true); //prevents infinite loop
+    firstEntry.current = false;
 
     var newDetails = JSON.parse(localStorage.getItem("storyDetails"));
+    setPrev(newDetails);
+
     if (localStorage.getItem("storyNum")!==null) {
       storyNum.current = Number(localStorage.getItem("storyNum")); //add try catch security
       //set form data
+      newEntry.current = false;
+
       if (storyNum.current>-1) {
         setTitle(newDetails[storyNum.current].title);
         setSDesc(newDetails[storyNum.current].shortDesc);
         setLDesc(newDetails[storyNum.current].longDesc);
         setGen(newDetails[storyNum.current].genre);
+        localID.current = newDetails[storyNum.current].localID;
+        storyNum.current = 0;
       }
     }  else {
       setTitle("");
       setSDesc("");
       setLDesc("");
+      localID.current = newDetails.length; //sets new id of story to length of list
     }
-
-
-
-
   }
-
-
 
   return (
   <>

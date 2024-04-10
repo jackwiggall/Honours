@@ -11,6 +11,7 @@ function Testing() {
     const [linkID, setLinkID] = useState(0); //link to what
 
     var pageNum = useRef(0);
+    var storyNum = useRef(0);
     var run = useRef(false);
     var storyDetails = useRef([{}]);
     var pageDetails = useRef([{}]);
@@ -21,15 +22,30 @@ function Testing() {
 
         run.current = true;
 
+        storyNum.current = localStorage.getItem("storyNum");
         storyDetails.current = JSON.parse(localStorage.getItem("storyDetails"));
         pageDetails.current = JSON.parse(localStorage.getItem("pageDetails"));
 
-        setgTitle(storyDetails.current[0].title); //incorrect position
-        setpTitle(pageDetails.current[0].title);
-        setpText(pageDetails.current[0].text);
-        setLinkText(pageDetails.current[0].linkText);
-        setLinkID(pageDetails.current[0].linkID);
-        pageNum.current = pageDetails.current[0].linkID;
+        storyDetails.current = storyDetails.current[storyNum.current];
+        pageDetails.current = pageDetails.current[storyNum.current];
+
+        storyDetails.current = JSON.parse(localStorage.getItem("storyDetails"));
+
+        if (pageDetails.current.length>1) {
+          setgTitle(storyDetails.current[0].title); //incorrect position
+          setpTitle(pageDetails.current[0].title);
+          setpText(pageDetails.current[0].text);
+          setLinkText(pageDetails.current[0].linkText);
+          setLinkID(pageDetails.current[0].linkID);
+          pageNum.current = pageDetails.current[0].linkID;
+        }else {
+          setgTitle("Error");
+          setpTitle("Error");
+          setpText("Error");
+          setLinkText("");
+          setLinkID(0);
+          pageDetails.current = [{title: "Error", text: "Error", linkText: "", linkID: 0}]; //prevents loading undefined data on pressing nav button
+        }
 
       } else if (run.current===false) {
         run.current = true;

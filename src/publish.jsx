@@ -10,20 +10,23 @@ const client = generateClient();
 
 function PublishExtra() {
 
-  if (localStorage.getItem("id")!==null&&localStorage.getItem("storyDetails")!==null&&localStorage.getItem("storyNum")!==null&&localStorage.getItem("pageDetails")!==null) {
+  if (localStorage.getItem("id")!==null&&localStorage.getItem("storyDetails")!==null&&localStorage.getItem("storyNum")!==null) {
     const accountsID = localStorage.getItem("id");
     var gameID = ""; //need to get once game is made
 
     var newDetails = JSON.parse(localStorage.getItem("storyDetails"));
     var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
     var storyNum = Number(localStorage.getItem("storyNum"));
+    pageDetails = pageDetails[storyNum];
 
     //set form data
-    const title = newDetails[storyNum].title;
-    const shortDesc = newDetails[storyNum].shortDesc;
-    const longDesc = newDetails[storyNum].longDesc;
-    const genre = newDetails[storyNum].genre;
-    //console.log(`${accountsID}, ${title}, ${shortDesc}, ${longDesc}, ${genre}`);
+    //console.log(newDetails[storyNum]);
+    const title = String(newDetails[storyNum].title);
+    const shortDesc = String(newDetails[storyNum].shortDesc);
+    const longDesc = String(newDetails[storyNum].longDesc);
+    const genre = String(newDetails[storyNum].genre);
+    //genre not defined in db
+    console.log(`${accountsID}, ${title}, ${shortDesc}, ${longDesc}, ${genre}`);
 
     //creates game in table
     const createResults = client.graphql({
@@ -34,19 +37,18 @@ function PublishExtra() {
           title : title,
           shortDesc : shortDesc,
           longDesc : longDesc,
-          genre : genre,
         },
       },
     }).then(function(v) {
-
+      console.log(v);
     //gets gameid from newly created game in table
     const gameResults = client.graphql({
       query: gameInfosByAccountsID, variables: {accountsID : accountsID}
     })
     .then(function(v) { // `delay` returns a promise
-      //console.log(v); // Log the value once it is resolved
+      console.log(v); // Log the value once it is resolved
       v.data.gameInfosByAccountsID.items.forEach(x => {
-        //console.log(x);
+        console.log(x);
         //check if current game is same as just created for id
 
         //need to make title unique to user to ensure easier finding cause currently if all values are equal can page to one
@@ -59,7 +61,7 @@ function PublishExtra() {
       if (gameID!=="") {
         //once game is created, create pages for the game
         pageDetails.forEach(x => {
-          //console.log(x);
+          console.log(x);
           const pageResults = client.graphql({
             query: createPages,
             variables: {
@@ -75,11 +77,13 @@ function PublishExtra() {
           }).then(function(v) { // `delay` returns a promise
             //worked, pages should exist
             console.log("success");
+            console.log(v);
           })
           .catch(function(v) {
             // Or do something else if it is rejected
             // (it would not happen in this example, since `reject` is not called).
             console.log("page error");
+            console.log(v);
           });
         })
       }//end of if gameID
@@ -88,12 +92,14 @@ function PublishExtra() {
       // Or do something else if it is rejected
       // (it would not happen in this example, since `reject` is not called).
       console.log("result error");
+      console.log(v);
     })
   })//create game error
   .catch(function(v) {
     // Or do something else if it is rejected
     // (it would not happen in this example, since `reject` is not called).
     console.log("create error");
+    console.log(v);
   });
 
 
@@ -108,12 +114,21 @@ function PublishExtra() {
 function Publish() {
 
   const nav = useNavigate();
+  var pagesExist = false;
+
+  var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
+  var storyNum = Number(localStorage.getItem("storyNum"));
+  pageDetails = pageDetails[storyNum];
+  console.log(pageDetails.length);
+  if (pageDetails.length!==undefined) {
+    pagesExist = true;
+  }
 
   const handleSubmit = (e) => {
 
       e.preventDefault();
       //ATTEMPT PUBLISH PROJECT
-      if (localStorage.getItem("pageDetails")!==null) {
+      if (pagesExist) {
         PublishExtra();
         //removes all pages and stories (need to change to remove single game)
         localStorage.removeItem("storyDetails");

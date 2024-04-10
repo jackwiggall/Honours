@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { generateClient } from 'aws-amplify/api';
 import { listGameInfos } from './graphql/queries';
 
-
 function LoopedResult() {
   //NEED TO ADD KEY
   //SHOWS ALL PAGES
@@ -16,7 +15,7 @@ function LoopedResult() {
 
     if (localStorage.getItem("searchRes")===null) {
       const client = generateClient();
-      const results = client.graphql({ query: listGameInfos, limit: 3}) //change limit later, just to save network/query space
+      const results = client.graphql({ query: listGameInfos, limit: 3}) //limit no work
       .then(function(v) { // `delay` returns a promise
         //console.log(v.data.listGameInfos.items); // Log the value once it is resolved
 
@@ -87,7 +86,7 @@ function DisplayResults(i) {
 }
 
 function Results() {
-
+  localStorage.removeItem("gameDetails");
   var run = useRef(false);
 
     if (!run.current) {

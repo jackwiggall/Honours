@@ -43,9 +43,6 @@ if (localStorage.getItem("infoDets")!==null) {
 
           <div className='box'>
             <h3 className='d-inline-block'>{infoDet.title}</h3> {/*<!--Name-->*/}
-            <h4 className='d-inline-block float-right'> 2 <i className='fa-solid fa-eye'></i> {/*<!--Views-->*/}
-            3 <i className='fa-solid fa-heart'></i> {/*<!--Likes-->*/}
-            1 <i className='fa-solid fa-comment'></i></h4> {/*<!--Comments-->*/}
             <p>By: {infoDet.user}</p>
             <p>{infoDet.longDesc}</p>
             <p>#tags #cool #mystery</p>
