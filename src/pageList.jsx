@@ -17,8 +17,9 @@ function Top() {
 function LoopedPages(props) {
   //NEED TO ADD KEY
   //SHOWS ALL PAGES
-  const details = props.details
-
+  var storyNum = localStorage.getItem("storyNum");
+  const details = props.details;
+  //console.log(details);
   return (
     <div>
     {details.map((det) => (
@@ -39,10 +40,12 @@ function LoopedPages(props) {
 
 function DisplayPages() {
   var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
+  var storyNum = localStorage.getItem("storyNum");
   //console.log(`Title: ${newDetails.ptitle}`);
+  newDetails=newDetails[storyNum];
   localStorage.removeItem("currentPage");
   localStorage.removeItem("links");
-
+  //console.log(newDetails[storyNum]);
   return (
     <>
     <div className='bground'>
@@ -70,13 +73,24 @@ function DisplayNone() {
 
 function PageList() {
 
-  if (localStorage.getItem("pageDetails")!==null) {
+  if (localStorage.getItem("pageDetails")!==null&&localStorage.getItem("storyNum")!==null) {
     //story details already exist, pull them
-    return (
-    <>
-      <DisplayPages />
-    </>
-    )
+    var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
+    var storyNum = localStorage.getItem("storyNum");
+    if (newDetails[storyNum].length===undefined) {
+      //console.log("err");
+      return (
+      <>
+        <DisplayNone />
+      </>
+      )
+    }else {
+      return (
+      <>
+        <DisplayPages />
+      </>
+      )
+    }
   }
   else {
     return (

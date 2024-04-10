@@ -74,6 +74,14 @@ function Create() {
             ...prev.slice(localID.current),
           ];
           localStorage.setItem("storyNum",localID.current);
+          //set pages to empty
+          var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
+          var newPages = [
+          ...pageDetails.slice(0,localID.current),
+          {},
+          ...pageDetails.slice(localID.current),
+        ];
+          localStorage.setItem("pageDetails",JSON.stringify(newPages));
         }else {
           //edit story when some already exist
           const newDetails =
@@ -86,6 +94,7 @@ function Create() {
             };
           storyDetails = RewriteArray(prev, newDetails);
           localStorage.setItem("storyNum",storyNum.current);
+          localStorage.setItem("pageDetails",JSON.stringify([{}]));
         }
       }else {
         //first story
@@ -100,6 +109,7 @@ function Create() {
           },
         ];
         localStorage.setItem("storyNum",0);
+        localStorage.setItem("pageDetails",JSON.stringify([{}]));
       }
       localStorage.removeItem("storyDetails");
       localStorage.setItem("storyDetails", JSON.stringify(storyDetails));

@@ -43,7 +43,7 @@ var UserProfile = (function() {
   var getID = function() {
 
     if (localStorage.getItem("id")!==null) {
-      return id;
+      return localStorage.getItem("id");
     } else {
       return "Error";
     }

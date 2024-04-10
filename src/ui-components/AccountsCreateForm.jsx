@@ -62,6 +62,7 @@ export default function AccountsCreateForm(props) {
       rowGap="15px"
       columnGap="15px"
       padding="20px"
+      className="bg-light"
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {

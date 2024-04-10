@@ -54,6 +54,7 @@ function Play() {
         .then(function(v) { // `delay` returns a promise
           //console.log(v.data.pagesByGameID.items); // Log the value once it is resolved
           var localDetails = v.data.pagesByGameID.items;
+          //console.log(localDetails);
             //gameDetails.current = ;
             //NEED TO SORT ORDER OF RESULTS
 
@@ -77,6 +78,7 @@ function Play() {
         .catch(function(v) {
           // Or do something else if it is rejected
           // (it would not happen in this example, since `reject` is not called).
+          console.log(v);
           setpTitle("Error");
           setpText("An error occured, this is most likely to do with the database query.");
           setLinkText("Exit from the top");

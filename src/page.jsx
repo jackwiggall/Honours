@@ -6,7 +6,9 @@ import Header from './header.jsx';
 
 function LoopedLinks(props) {
   //SHOWS ALL PAGE TITLES FOR LINKS
-  const details = props.details
+  const details = props.details;
+  //console.log(props.storyNum);
+  //console.log(details);
   return (
     <div>
     <select className='custom-select mt-2 mr-sm-2' onChange = {(e) => localStorage.setItem("links", e.target.value)}>
@@ -62,6 +64,7 @@ function Page() {
   var pageNum = useRef(-1);
   var insertAt = useRef(0);
   const pageDetails = useRef([{}]);
+  const allDetails = useRef([]);
 
   //create page
   const handleSubmit = (e) => {
@@ -89,6 +92,7 @@ function Page() {
            ...prev.slice(0, insertAt),
          ];
          setPrev(pageDetails.current);
+         //console.log("new page of existing list");
       } else {
         //gets current page
         const passObj = {
@@ -98,16 +102,21 @@ function Page() {
           linkText : linkText,
           linkID : Number(linkID),
         }
+        //console.log("editing page");
         pageDetails.current = RewriteArray(prev, passObj);
       }
 
       //checks if pages already exist
       if (empty.current) {
         //1st page made
-        localStorage.setItem("pageDetails", JSON.stringify([{id: 0, title : title, text : text, linkText : linkText, linkID: linkID}]));
+      //  console.log("resetting");
+        allDetails.current[storyNum.current] = [{id: 0, title : title, text : text, linkText : linkText, linkID: linkID}];
+        localStorage.setItem("pageDetails", JSON.stringify(allDetails.current));
       }else { //NEED IDENTIFIER
         localStorage.removeItem("pageDetails");
-        localStorage.setItem("pageDetails", JSON.stringify(pageDetails.current));
+        allDetails.current[storyNum.current] = pageDetails.current;
+        //console.log("ye");
+        localStorage.setItem("pageDetails", JSON.stringify(allDetails.current));
       }
       //saves story details as json string
 
@@ -118,9 +127,9 @@ function Page() {
   const handleDel = (e) => {
 
       e.preventDefault();
-      console.log(prev);
+      //console.log(prev);
       //check if page in list
-      if (localStorage.getItem("pageDetails")!==null && pageNum.current!==-1) {
+      if (localStorage.getItem("pageDetails")!==undefined && pageNum.current!==-1) {
         console.log(`del ${pageNum.current}`);
         var newArray = prev;
 
@@ -132,36 +141,43 @@ function Page() {
         }
 
         //need to cut out current page, shift all down one
-        console.log(newArray);
+        //console.log(newArray);
         //console.log(prev);
         if (newArray[0]!==undefined) {
           localStorage.setItem("pageDetails",JSON.stringify(newArray));
         }else {
-          console.log("emkpty");
+        //  console.log("emkpty");
           localStorage.removeItem("pageDetails");
         }
-
-
       }
 
       nav('../library/create/pagelist'); // Redirect to buttons
     }
 
+    if (localStorage.getItem("storyNum")!==null) {
+      storyNum.current = localStorage.getItem("storyNum");
+    }
 
   //check if other pages exist
-  if (localStorage.getItem("pageDetails")!==null && valid.current===0) {
+  if (valid.current===0 && storyNum.current>-1) {
 
     //only run once
     valid.current = 1;
 
     //story details already exist, pull them
-    var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
-    setPrev(newDetails);
-    empty.current = false;
-
-    if (localStorage.getItem("currentPage")!==null) {
-      pageNum.current = localStorage.getItem("currentPage"); //sets to the id of editing page, is -1 for new page
+    allDetails.current = JSON.parse(localStorage.getItem("pageDetails"));
+    var newDetails = allDetails.current[storyNum.current];
+  //  console.log(newDetails);
+    if(newDetails.length===undefined) {
+      //console.log("error");
+    }else {
+      setPrev(newDetails);
+      empty.current = false;
+      if (localStorage.getItem("currentPage")!==null) {
+        pageNum.current = localStorage.getItem("currentPage"); //sets to the id of editing page, is -1 for new page
+      }
     }
+
     if (pageNum.current===-1) { //set default values
       //new page
       setTitle("");
@@ -207,7 +223,7 @@ function Page() {
             <div className='box'>
                 <h3 className='w-100'>Link</h3>
                 <input className='form-control mr-sm-2' type='search' placeholder='Link Text' onChange = {(e) => setLinkText(e.target.value)} value = {linkText} aria-label='Text' />
-                <LoopedLinks details={prev} />
+                <LoopedLinks details={prev} storyNum={storyNum.current} />
             </div>
 
             <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button>
