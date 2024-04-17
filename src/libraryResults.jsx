@@ -10,7 +10,7 @@ function DisplayResult(i) {
       <>
     <div className='box' onClick={() => localStorage.setItem("storyNum",i.data.localID)}> {/*set to id*/}
       <div className='card' style={{width: '100%'}}>
-        <Link to={'./create/buttons'} style={{color: 'inherit', textDecoration: 'none'}}>
+        <Link to={'../library/create/buttons'} style={{color: 'inherit', textDecoration: 'none'}}>
         <div className='card-body'>
           <h5 className='card-title'>{i.data.title}</h5>
           <p className='card-text d-inline-block'>{i.data.shortDesc}</p>
@@ -58,7 +58,7 @@ const [lib, setLib] = useState([{}]);
              <DisplayResult data={data}/>
            ))}
          </>
-        )   
+        )
    }
 }
 export default LibraryResult;
