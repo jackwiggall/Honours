@@ -1,6 +1,6 @@
 {
-  "name": "My Honors PWA",
-  "short_name": "Honors",
+  "name": "the Bookshelf",
+  "short_name": "Bookshelf",
   "start_url": "/?source=pwa",
   "display": "standalone",
   "lang":"en-US",
