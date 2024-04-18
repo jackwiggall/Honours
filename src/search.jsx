@@ -20,6 +20,7 @@ function Search() {
 
 if (!run.current) {
   run.current = true;
+  localStorage.removeItem("redirect");
   return (
       <>
       <div className='bground'>
