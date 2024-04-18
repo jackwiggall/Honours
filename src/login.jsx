@@ -24,14 +24,14 @@ function CheckValid(i, u) {
         UserProfile.setID(i);
         //console.log("working?");
       } else {
-        console.log("invalid passkey");
+        //console.log("invalid passkey");
         throw "not valid passkey"; //"Expected an error object to be thrown", still works
       }
     })
     .catch(function(v) {
       // Or do something else if it is rejected
       // (it would not happen in this example, since `reject` is not called).
-      console.log("Error, item not in db or doesnt match");
+      console.log(v);
     });
   }
 }

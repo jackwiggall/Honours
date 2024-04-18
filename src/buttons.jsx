@@ -22,7 +22,7 @@ const handleDel= (e) => {
       var storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
       var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
 
-      console.log(storyDetails);
+      //console.log(storyDetails);
       storyDetails.splice(storyNum, 1);
       pageDetails.splice(storyNum, 1);
 
@@ -32,7 +32,7 @@ const handleDel= (e) => {
         //need to do same for pages
       }
       //need to cut out current page, shift all down one
-      console.log(storyDetails);
+      //console.log(storyDetails);
       //console.log(prev);
       if (storyDetails[0]!==undefined) {
         localStorage.setItem("storyDetails",JSON.stringify(storyDetails));
