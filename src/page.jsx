@@ -6,7 +6,9 @@ import Header from './header.jsx';
 
 function LoopedLinks(props) {
   //SHOWS ALL PAGE TITLES FOR LINKS
-  const details = props.details
+  const details = props.props;
+  //need to get down to array
+  //console.log(details);
   return (
     <div>
     <select className='custom-select mt-2 mr-sm-2' onChange = {(e) => localStorage.setItem("links", e.target.value)}>
@@ -17,6 +19,24 @@ function LoopedLinks(props) {
     </select>
     </div>
   )
+}
+
+function NewLink(props, linkCurrent) {
+  const info = props;
+  console.log(linkCurrent);
+
+
+    {/*for (var i = linkCurrent.current; i < linkCurrent.current.length; i++) {
+      //for length of
+      return (
+        <>
+        Hi
+        </>
+      )
+
+
+    }*/}
+
 }
 
 function RewriteArray(props,page) {
@@ -57,6 +77,7 @@ function Page() {
   const [linkText, setLinkText] = useState('');
 
   const nav = useNavigate();
+  var linkCount = useRef(0);
   var valid = useRef(0);
   var empty = useRef(true);
   var pageNum = useRef(-1);
@@ -118,10 +139,10 @@ function Page() {
   const handleDel = (e) => {
 
       e.preventDefault();
-      console.log(prev);
+      //console.log(prev);
       //check if page in list
       if (localStorage.getItem("pageDetails")!==null && pageNum.current!==-1) {
-        console.log(`del ${pageNum.current}`);
+        //console.log(`del ${pageNum.current}`);
         var newArray = prev;
 
         newArray.splice(pageNum.current, 1);
@@ -130,23 +151,42 @@ function Page() {
           //change all ID's down from deleted page
           newArray[i].id--;
         }
-
         //need to cut out current page, shift all down one
-        console.log(newArray);
+        //console.log(newArray);
         //console.log(prev);
         if (newArray[0]!==undefined) {
           localStorage.setItem("pageDetails",JSON.stringify(newArray));
         }else {
-          console.log("emkpty");
+          //console.log("emkpty");
           localStorage.removeItem("pageDetails");
         }
-
-
       }
-
       nav('../library/create/pagelist'); // Redirect to buttons
     }
 
+  const handleLink = (e) => {
+
+    e.preventDefault();
+    //console.log("new link");
+    linkCount.current++;
+    var locationID = "l" + linkCount.current;
+    //console.log(locationID);
+    document.getElementById("Links").innerHTML += `<div id='${locationID}'><div class='box'><h3 class='w-100'>Link</h3></div></div>`;
+    //return (<NewLink props={prev} linkCount={linkCount.current} />)
+  }
+
+  const deleteLink = (e) => {
+
+    e.preventDefault();
+    //console.log("del link");
+    if (linkCount.current>0) {
+      var locationID = "l" + linkCount.current;
+      //console.log(locationID);
+      document.getElementById(locationID).remove();
+      linkCount.current--;
+    }
+
+  }
 
   //check if other pages exist
   if (localStorage.getItem("pageDetails")!==null && valid.current===0) {
@@ -193,37 +233,49 @@ function Page() {
       <div className='bground'>
         <Header link={"../library/create/pagelist"} location={"tB / Library  / Page"} />
 
-        <form onSubmit={handleSubmit}>
+        <form id="handleSubmit" onSubmit={handleSubmit} />
+
             <div className='box'>
                 <h3 className='w-100'>Page Title</h3>
-                <input className='form-control mr-sm-2' type='search' placeholder='Title' onChange = {(e) => setTitle(e.target.value)} value = {title} required aria-label='Title' />
+                <input className='form-control mr-sm-2' form="handleSubmit" type='search' placeholder='Title' onChange = {(e) => setTitle(e.target.value)} value = {title} required aria-label='Title' />
             </div>
 
             <div className='box'>
                 <h3 className='w-100'>Text</h3>
-                <textarea className='form-control mr-sm-2' placeholder='Text' onChange = {(e) => setText(e.target.value)} value = {text} required aria-label='Text'></textarea>
+                <textarea className='form-control mr-sm-2' form="handleSubmit" placeholder='Text' onChange = {(e) => setText(e.target.value)} value = {text} required aria-label='Text'></textarea>
             </div>
 
-            <div className='box'>
-                <h3 className='w-100'>Link</h3>
-                <input className='form-control mr-sm-2' type='search' placeholder='Link Text' onChange = {(e) => setLinkText(e.target.value)} value = {linkText} aria-label='Text' />
-                <LoopedLinks details={prev} />
+            <div id="Links">
+              <div id="l0">
+                <div className='box'>
+                    <h3 className='w-100'>Link</h3>
+                    <input className='form-control mr-sm-2' type='search' form="handleSubmit" placeholder='Link Text' onChange = {(e) => setLinkText(e.target.value)} value = {linkText} aria-label='Text' />
+                    <LoopedLinks props={prev} />
+                </div>
+              </div>
+              <NewLink props={prev} linkCount={linkCount.current} />
+
             </div>
 
-            <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button>
-          </form>
+
+            <form onSubmit={handleLink}>
+              <Button variation="primary" className='w-100 my-2 my-sm-2 mr-1' type='submit'>New Link</Button>
+            </form>
+
+            <form onSubmit={deleteLink}>
+              <Button variation="primary" className='w-100 my-2 my-sm-2 mr-1' type='submit'>Remove Link</Button>
+            </form>
+
+
+            <Button variation="primary" form="handleSubmit" className='w-100 my-2 my-sm-2 mr-1' type='submit'>Submit</Button>
+
 
           <form onSubmit={handleDel}>
             <Button variation="primary" className='btn btn-danger w-100 my-2 my-sm-1 mr-1' type='submit'>Delete</Button>
           </form>
 
           </div>
-          </>
+        </>
     )
-
-
 }
-
-
-
 export default Page;
