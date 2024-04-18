@@ -12,8 +12,8 @@ function Search() {
 
       e.preventDefault();
       localStorage.removeItem("searchRes"); //next time viewing page will requery db, need to add reload
-      //console.log("resetting");
-      window.location.reload(); //reloads page so can requery db
+      document.location.reload();
+
     }
 
 if (!run.current) {
