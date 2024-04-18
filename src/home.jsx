@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Header from './header.jsx';
 
 function Home() {
+
+  const nav = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("redirect")!==undefined) {
+      localStorage.removeItem("redirect");
+      console.log("redirect");
+      nav("../search");
+    }
+  }, []);
+
 return (
     <>
     <div className='bground'>
