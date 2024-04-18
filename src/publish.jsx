@@ -26,7 +26,7 @@ function PublishExtra() {
     const longDesc = String(newDetails[storyNum].longDesc);
     const genre = String(newDetails[storyNum].genre);
     //genre not defined in db
-    console.log(`${accountsID}, ${title}, ${shortDesc}, ${longDesc}, ${genre}`);
+    //console.log(`${accountsID}, ${title}, ${shortDesc}, ${longDesc}, ${genre}`);
 
     //creates game in table
     const createResults = client.graphql({
@@ -40,15 +40,15 @@ function PublishExtra() {
         },
       },
     }).then(function(v) {
-      console.log(v);
+      //console.log(v);
     //gets gameid from newly created game in table
     const gameResults = client.graphql({
       query: gameInfosByAccountsID, variables: {accountsID : accountsID}
     })
     .then(function(v) { // `delay` returns a promise
-      console.log(v); // Log the value once it is resolved
+      //console.log(v); // Log the value once it is resolved
       v.data.gameInfosByAccountsID.items.forEach(x => {
-        console.log(x);
+        //console.log(x);
         //check if current game is same as just created for id
 
         //need to make title unique to user to ensure easier finding cause currently if all values are equal can page to one
@@ -61,7 +61,7 @@ function PublishExtra() {
       if (gameID!=="") {
         //once game is created, create pages for the game
         pageDetails.forEach(x => {
-          console.log(x);
+          //console.log(x);
           const pageResults = client.graphql({
             query: createPages,
             variables: {
@@ -76,14 +76,14 @@ function PublishExtra() {
             },
           }).then(function(v) { // `delay` returns a promise
             //worked, pages should exist
-            console.log("success");
-            console.log(v);
+            //console.log("success");
+            //console.log(v);
           })
           .catch(function(v) {
             // Or do something else if it is rejected
             // (it would not happen in this example, since `reject` is not called).
-            console.log("page error");
-            console.log(v);
+            //console.log("page error");
+            //console.log(v);
           });
         })
       }//end of if gameID
@@ -91,14 +91,14 @@ function PublishExtra() {
     .catch(function(v) {
       // Or do something else if it is rejected
       // (it would not happen in this example, since `reject` is not called).
-      console.log("result error");
+      //console.log("result error");
       console.log(v);
     })
   })//create game error
   .catch(function(v) {
     // Or do something else if it is rejected
     // (it would not happen in this example, since `reject` is not called).
-    console.log("create error");
+    //console.log("create error");
     console.log(v);
   });
 
@@ -119,7 +119,7 @@ function Publish() {
   var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
   var storyNum = Number(localStorage.getItem("storyNum"));
   pageDetails = pageDetails[storyNum];
-  console.log(pageDetails.length);
+  //console.log(pageDetails.length);
   if (pageDetails.length!==undefined) {
     pagesExist = true;
   }
@@ -145,7 +145,7 @@ function Publish() {
           //need to do same for pages
         }
         //need to cut out current page, shift all down one
-        console.log(storyDetails);
+        //console.log(storyDetails);
         //console.log(prev);
         if (storyDetails[0]!==undefined) {
           localStorage.setItem("storyDetails",JSON.stringify(storyDetails));

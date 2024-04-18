@@ -130,7 +130,7 @@ function Page() {
       //console.log(prev);
       //check if page in list
       if (localStorage.getItem("pageDetails")!==undefined && pageNum.current!==-1) {
-        console.log(`del ${pageNum.current}`);
+        //console.log(`del ${pageNum.current}`);
         var newArray = prev;
 
         newArray.splice(pageNum.current, 1);

@@ -94,7 +94,7 @@ function Create() {
             };
           storyDetails = RewriteArray(prev, newDetails);
           localStorage.setItem("storyNum",storyNum.current);
-          localStorage.setItem("pageDetails",JSON.stringify([{}]));
+          //localStorage.setItem("pageDetails",JSON.stringify([{}]));
         }
       }else {
         //first story
