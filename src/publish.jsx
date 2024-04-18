@@ -130,10 +130,32 @@ function Publish() {
       //ATTEMPT PUBLISH PROJECT
       if (pagesExist) {
         PublishExtra();
-        //removes all pages and stories (need to change to remove single game)
-        localStorage.removeItem("storyDetails");
-        localStorage.removeItem("pageDetails");
-        localStorage.removeItem("tagList");
+        //removes pages and stories from what is just been published)
+
+        var storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
+        pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
+
+        //console.log(storyDetails);
+        storyDetails.splice(storyNum, 1);
+        pageDetails.splice(storyNum, 1);
+
+        for (var i = storyNum; i < storyDetails.length; i++) {
+          //change all ID's down from deleted page
+          storyDetails[i].localID--;
+          //need to do same for pages
+        }
+        //need to cut out current page, shift all down one
+        console.log(storyDetails);
+        //console.log(prev);
+        if (storyDetails[0]!==undefined) {
+          localStorage.setItem("storyDetails",JSON.stringify(storyDetails));
+          localStorage.setItem("pageDetails",JSON.stringify(pageDetails));
+        }else {
+          //console.log("emkpty");
+          localStorage.removeItem("storyDetails");
+          localStorage.removeItem("pageDetails");
+        }
+
         nav('../library'); // Redirect to library
       } else {
         console.log("No pages to publish!");

@@ -20,9 +20,11 @@ const handleDel= (e) => {
       //make sure can get the number of story currently on to delete
       var storyNum = JSON.parse(localStorage.getItem("storyNum"));
       var storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
+      var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
 
       console.log(storyDetails);
       storyDetails.splice(storyNum, 1);
+      pageDetails.splice(storyNum, 1);
 
       for (var i = storyNum; i < storyDetails.length; i++) {
         //change all ID's down from deleted page
@@ -34,6 +36,7 @@ const handleDel= (e) => {
       //console.log(prev);
       if (storyDetails[0]!==undefined) {
         localStorage.setItem("storyDetails",JSON.stringify(storyDetails));
+        localStorage.setItem("pageDetails",JSON.stringify(pageDetails));
       }else {
         //console.log("emkpty");
         localStorage.removeItem("storyDetails");
@@ -61,9 +64,9 @@ return (
             <Link to={"../library/create/pagelist"}><button className='btn w-100' type='button'>Page List</button></Link>
         </div>
 
-        <div className='box'>
+        {/*}<div className='box'>
             <Link to={"../library/create/tags"}><button className='btn w-100' type='button'>Tags (not finished)</button></Link>
-        </div>
+        </div>*/}
 
         <p>Games are saved locally until published.</p>
         <Link to={"../library/create/testing"}><Button variation="primary" className='btn w-100 my-2 my-sm-1 mr-1' type='submit' >Test</Button></Link> {/*Not implemented*/}
