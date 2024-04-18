@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { generateClient } from 'aws-amplify/api';
+import { getAccounts } from './graphql/queries';
 //https://blog.logrocket.com/using-localstorage-react-hooks/
 
 //https://stackoverflow.com/questions/42420531/what-is-the-best-way-to-manage-a-users-session-in-react
@@ -49,13 +51,26 @@ var UserProfile = (function() {
     }
   };
 
+  var searchID = function() {
+    const client = generateClient();
+    const pageResults = client.graphql({ query: getAccounts, variables: {username: username},
+    }).then(function(v) { // `delay` returns a promise
+      //worked, pages should exist
+      setID(v.data.getAccounts.id);
+    })
+    .catch(function(v) {
+      //error
+    });
+  };
+
   // Also set this in cookie/localStorage
 
   return {
     getName: getName,
     setName: setName,
     setID: setID,
-    getID: getID
+    getID: getID,
+    searchID: searchID
   }
 
 })();

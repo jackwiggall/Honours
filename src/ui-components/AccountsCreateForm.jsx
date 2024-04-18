@@ -109,6 +109,7 @@ export default function AccountsCreateForm(props) {
           }
           if (clearOnSuccess) {
             UserProfile.setName(username);
+            UserProfile.searchID();
             resetStateValues();
             nav('../');
           }
