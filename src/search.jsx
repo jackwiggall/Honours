@@ -12,7 +12,7 @@ function Search() {
 
       e.preventDefault();
       localStorage.removeItem("searchRes"); //next time viewing page will requery db, need to add reload
-      document.location.reload();
+      window.location.href=window.location.href;
 
     }
 

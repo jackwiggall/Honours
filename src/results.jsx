@@ -75,9 +75,6 @@ function DisplayResults(i) {
             <h5 className='card-title'>{i.data.title}</h5>
             <p className='card-text d-inline-block'>{i.data.shortDesc}</p>
           </div>
-          <ul className='list-group list-group-flush text-secondary'>
-            <li className='list-group-item'>#fantasy, #sci-fi</li>
-          </ul>
           </Link>
         </div>
       </div>
