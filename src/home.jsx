@@ -9,7 +9,7 @@ function Home() {
   const nav = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("redirect")!==undefined) {
+    if (localStorage.getItem("redirect")!==null) {
       localStorage.removeItem("redirect");
       console.log("redirect");
       nav("../search");
