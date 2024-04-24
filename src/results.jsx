@@ -4,7 +4,6 @@ import { generateClient } from 'aws-amplify/api';
 import { listGameInfos } from './graphql/queries';
 
 function LoopedResult() {
-  //NEED TO ADD KEY
   //SHOWS ALL PAGES
   var run = useRef(false);
   const [res, setRes] = useState([{}]);
@@ -15,13 +14,13 @@ function LoopedResult() {
 
     if (localStorage.getItem("searchRes")===null) {
       const client = generateClient();
-      const results = client.graphql({ query: listGameInfos, limit: 3}) //limit no work
+      client.graphql({ query: listGameInfos)
       .then(function(v) { // `delay` returns a promise
 
           setRes(v.data.listGameInfos.items);
           localStorage.setItem("searchRes",JSON.stringify(v.data.listGameInfos.items));
 
-      }) //change limit once working
+      })
       .catch(function(v) {
         // Or do something else if it is rejected
         // (it would not happen in this example, since `reject` is not called).

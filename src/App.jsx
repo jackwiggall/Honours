@@ -23,6 +23,7 @@ return (
       <Routes>
 
           <Route exact path='/' element={<Home />} />
+          {/*Website URL layout, not reality as react uses single page*/}
 
           <Route exact path='/library' element={<Library />} />
           <Route exact path='/library/create' element={<Create />} />
