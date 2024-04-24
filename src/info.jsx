@@ -16,7 +16,6 @@ if (localStorage.getItem("infoDets")!==null) {
           <div className='box'>
             <h3 className='d-inline-block'>{infoDet.title}</h3> {/*<!--Name-->*/}
             <p>{infoDet.longDesc}</p>
-            <p>#tags #cool #mystery</p>
             <Link to={"../play"}> <Button variation='primary' className='btn w-100 my-2 my-sm-1 mr-1' type='button'>Play</Button></Link>
           </div>
 
