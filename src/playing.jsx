@@ -43,13 +43,13 @@ function Play() {
         run.current = true;
         //set other fields to error
         if (localStorage.getItem("infoDets")!==null) {
-          var gameInfo = JSON.parse(localStorage.getItem("infoDets"));
+          gameInfo = JSON.parse(localStorage.getItem("infoDets"));
           setgTitle(gameInfo.title);
           gameID.current = gameInfo.gameID;
 
         //QUERY TO GET PAGES BY GAMEID
         const client = generateClient();
-        const results = client.graphql({ query: pagesByGameID, variables: {gameID: gameID.current}})
+        client.graphql({ query: pagesByGameID, variables: {gameID: gameID.current}})
         .then(function(v) { // `delay` returns a promise
           var localDetails = v.data.pagesByGameID.items;
 

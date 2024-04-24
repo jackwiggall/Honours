@@ -14,7 +14,7 @@ function Home() {
       localStorage.removeItem("redirect");
       nav("../search");
     }
-  }, []);
+  }, [nav]);
 
 return (
     <>

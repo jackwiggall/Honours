@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { generateClient } from 'aws-amplify/api';
 import { getAccounts } from './graphql/queries';
 //https://blog.logrocket.com/using-localstorage-react-hooks/
@@ -53,7 +52,7 @@ var UserProfile = (function() {
 
   var searchID = function() {
     const client = generateClient();
-    const pageResults = client.graphql({ query: getAccounts, variables: {username: username},
+    client.graphql({ query: getAccounts, variables: {username: username},
     }).then(function(v) { // `delay` returns a promise
       //worked, pages should exist
       setID(v.data.getAccounts.id);

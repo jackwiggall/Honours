@@ -23,11 +23,11 @@ function PublishExtra() {
     const title = String(newDetails[storyNum].title);
     const shortDesc = String(newDetails[storyNum].shortDesc);
     const longDesc = String(newDetails[storyNum].longDesc);
-    const genre = String(newDetails[storyNum].genre);
-    //genre not defined in db
+    //const genre = String(newDetails[storyNum].genre);
+    //genre not defined in db yet
 
     //creates game in table
-    const createResults = client.graphql({
+    client.graphql({
       query: createGameInfo,
       variables: {
         input: {
@@ -39,7 +39,7 @@ function PublishExtra() {
       },
     }).then(function(v) {
     //gets gameid from newly created game in table
-    const gameResults = client.graphql({
+    client.graphql({
       query: gameInfosByAccountsID, variables: {accountsID : accountsID}
     })
     .then(function(v) { // `delay` returns a promise
@@ -56,7 +56,7 @@ function PublishExtra() {
       if (gameID!=="") {
         //once game is created, create pages for the game
         pageDetails.forEach(x => {
-          const pageResults = client.graphql({
+          client.graphql({
             query: createPages,
             variables: {
               input: {

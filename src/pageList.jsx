@@ -16,7 +16,6 @@ function Top() {
 
 function LoopedPages(props) {
   //SHOWS ALL PAGES
-  var storyNum = localStorage.getItem("storyNum");
   const details = props.details;
   return (
     <div>

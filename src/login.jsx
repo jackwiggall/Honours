@@ -12,7 +12,7 @@ function CheckValid(i, u) {
 
   const client = generateClient();
   if (i!==""&&u!=="") { //make sure not empty button press
-      const pageResults = client.graphql({ query: getAccounts, variables: {username: u},
+      client.graphql({ query: getAccounts, variables: {username: u},
     }).then(function(v) { // `delay` returns a promise
       //worked, pages should exist
 
@@ -20,7 +20,7 @@ function CheckValid(i, u) {
         UserProfile.setName(u);
         UserProfile.setID(i);
       } else {
-        throw "not valid passkey"; //"Expected an error object to be thrown", still works
+        throw v; //invalid object
       }
     })
     .catch(function(v) {
