@@ -8,7 +8,7 @@ function Header({link, location}) {
     //sets the page title
     //https://stackoverflow.com/questions/46160461/how-do-you-set-the-document-title-in-react
       document.title = location;
-    }, []);
+    }, [location]);
 
 
 if (location!=="tB") {

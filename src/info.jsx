@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@aws-amplify/ui-react";
-import { generateClient } from 'aws-amplify/api';
-import { getAccountsByID } from './graphql/queries';
 import Header from './header.jsx';
 
-
 function Info() {
-
 
 if (localStorage.getItem("infoDets")!==null) {
   var infoDet = JSON.parse(localStorage.getItem("infoDets"));
