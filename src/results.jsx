@@ -14,7 +14,7 @@ function LoopedResult() {
 
     if (localStorage.getItem("searchRes")===null) {
       const client = generateClient();
-      client.graphql({ query: listGameInfos)
+      client.graphql({ query: listGameInfos})
       .then(function(v) { // `delay` returns a promise
 
           setRes(v.data.listGameInfos.items);
