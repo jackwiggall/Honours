@@ -62,7 +62,6 @@ function Testing() {
     const handleLink = () => {
 
         //e.preventDefault();
-        //console.log("change page");
         pageNum.current = linkID;
         setpTitle(pageDetails.current[pageNum.current].title);
         setpText(pageDetails.current[pageNum.current].text);

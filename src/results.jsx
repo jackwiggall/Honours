@@ -17,7 +17,6 @@ function LoopedResult() {
       const client = generateClient();
       const results = client.graphql({ query: listGameInfos, limit: 3}) //limit no work
       .then(function(v) { // `delay` returns a promise
-        //console.log(v.data.listGameInfos.items); // Log the value once it is resolved
 
           setRes(v.data.listGameInfos.items);
           localStorage.setItem("searchRes",JSON.stringify(v.data.listGameInfos.items));
@@ -26,17 +25,14 @@ function LoopedResult() {
       .catch(function(v) {
         // Or do something else if it is rejected
         // (it would not happen in this example, since `reject` is not called).
-        console.log("error");
+        console.log(v);
       });
     }else {
       var searchRes = JSON.parse(localStorage.getItem("searchRes"));
-      //console.log(searchRes);
       setRes(searchRes);
     }
   }
   if (res.length!==0) {
-    //console.log(res.length);
-    //console.log(res);
 
     //loop through results and display
     return (
@@ -56,7 +52,6 @@ function LoopedResult() {
 }
 
 function DisplayResults(i) {
-  //console.log(i); //takes a second to load
 
   if (i.data!==undefined) {
     const infoDet = {
@@ -87,8 +82,6 @@ function Results() {
   var run = useRef(false);
 
     if (!run.current) {
-      //var results = client.graphql({ query: listGameInfos, limit: 3});
-      //console.log(results); //can get results just not able to display them
       run.current = true;
       return (
         <div>
@@ -96,8 +89,5 @@ function Results() {
         </div>
       )
     }
-
-
-
 }
 export default Results;

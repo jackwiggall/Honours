@@ -63,8 +63,6 @@ var UserProfile = (function() {
     });
   };
 
-  // Also set this in cookie/localStorage
-
   return {
     getName: getName,
     setName: setName,

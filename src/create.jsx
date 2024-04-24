@@ -8,8 +8,6 @@ function RewriteArray(props,page) {
   //check if already in array and rewrite page if so
 
     const details = props;
-    //console.log(details);
-    //console.log(page);
     var newObj = [{}];
     var count = 0;
     details.forEach((det) =>
@@ -19,10 +17,8 @@ function RewriteArray(props,page) {
       }else {
         newObj[count]=page;
       }
-      //console.log(newObj[count]);
       count++;
     })
-    //console.log(newObj);
     if (newObj!==[{}])
     {
       return newObj;
@@ -54,8 +50,6 @@ function Create() {
   const handleSubmit = (e) => {
 
       e.preventDefault();
-      //console.log(prev);
-      //console.log(localID.current);
       var storyDetails = [{}];
       //first story
       if (firstEntry.current!==true) {
@@ -98,7 +92,6 @@ function Create() {
         }
       }else {
         //first story
-        //console.log("first");
         storyDetails = [
           {
             localID : 0,
@@ -185,7 +178,7 @@ function Create() {
               </select>
           </div>
           <i>*Required</i>
-          {/*<Link to="Buttons">*/}<Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button>{/*</Link>*/}
+          <Button variation="primary" className='w-100 my-2 my-sm-0 mr-1' type='submit' >Submit</Button>
           </form>
 
     </div>

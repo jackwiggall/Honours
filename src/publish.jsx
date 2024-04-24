@@ -20,13 +20,11 @@ function PublishExtra() {
     pageDetails = pageDetails[storyNum];
 
     //set form data
-    //console.log(newDetails[storyNum]);
     const title = String(newDetails[storyNum].title);
     const shortDesc = String(newDetails[storyNum].shortDesc);
     const longDesc = String(newDetails[storyNum].longDesc);
     const genre = String(newDetails[storyNum].genre);
     //genre not defined in db
-    //console.log(`${accountsID}, ${title}, ${shortDesc}, ${longDesc}, ${genre}`);
 
     //creates game in table
     const createResults = client.graphql({
@@ -40,28 +38,24 @@ function PublishExtra() {
         },
       },
     }).then(function(v) {
-      //console.log(v);
     //gets gameid from newly created game in table
     const gameResults = client.graphql({
       query: gameInfosByAccountsID, variables: {accountsID : accountsID}
     })
     .then(function(v) { // `delay` returns a promise
-      //console.log(v); // Log the value once it is resolved
       v.data.gameInfosByAccountsID.items.forEach(x => {
-        //console.log(x);
         //check if current game is same as just created for id
 
         //need to make title unique to user to ensure easier finding cause currently if all values are equal can page to one
         if (x.title===title&&x.shortDesc===shortDesc&&x.longDesc===longDesc) {
           gameID = x.id;
-          //console.log("found");
+          //found matching id
         }
       })
       //check if gameid is found
       if (gameID!=="") {
         //once game is created, create pages for the game
         pageDetails.forEach(x => {
-          //console.log(x);
           const pageResults = client.graphql({
             query: createPages,
             variables: {
@@ -76,14 +70,11 @@ function PublishExtra() {
             },
           }).then(function(v) { // `delay` returns a promise
             //worked, pages should exist
-            //console.log("success");
-            //console.log(v);
           })
           .catch(function(v) {
             // Or do something else if it is rejected
             // (it would not happen in this example, since `reject` is not called).
-            //console.log("page error");
-            //console.log(v);
+            console.log(v);
           });
         })
       }//end of if gameID
@@ -91,18 +82,14 @@ function PublishExtra() {
     .catch(function(v) {
       // Or do something else if it is rejected
       // (it would not happen in this example, since `reject` is not called).
-      //console.log("result error");
       console.log(v);
     })
   })//create game error
   .catch(function(v) {
     // Or do something else if it is rejected
     // (it would not happen in this example, since `reject` is not called).
-    //console.log("create error");
     console.log(v);
   });
-
-
 
   }else {
 
@@ -119,7 +106,7 @@ function Publish() {
   var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
   var storyNum = Number(localStorage.getItem("storyNum"));
   pageDetails = pageDetails[storyNum];
-  //console.log(pageDetails.length);
+
   if (pageDetails.length!==undefined) {
     pagesExist = true;
   }
@@ -135,30 +122,25 @@ function Publish() {
         var storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
         pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
 
-        //console.log(storyDetails);
         storyDetails.splice(storyNum, 1);
         pageDetails.splice(storyNum, 1);
 
         for (var i = storyNum; i < storyDetails.length; i++) {
           //change all ID's down from deleted page
           storyDetails[i].localID--;
-          //need to do same for pages
         }
         //need to cut out current page, shift all down one
-        //console.log(storyDetails);
-        //console.log(prev);
         if (storyDetails[0]!==undefined) {
           localStorage.setItem("storyDetails",JSON.stringify(storyDetails));
           localStorage.setItem("pageDetails",JSON.stringify(pageDetails));
         }else {
-          //console.log("emkpty");
           localStorage.removeItem("storyDetails");
           localStorage.removeItem("pageDetails");
         }
 
         nav('../library'); // Redirect to library
       } else {
-        console.log("No pages to publish!");
+        //No pages to publish!
       }
     }
 

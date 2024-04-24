@@ -7,7 +7,6 @@ import Create from './create.jsx';
 import Page from './page.jsx';
 import PageList from './pageList.jsx';
 import Buttons from './buttons.jsx';
-import Tags from './tags.jsx';
 import Info from './info.jsx';
 import Search from './search.jsx';
 import User from './user.jsx';
@@ -28,7 +27,6 @@ return (
           <Route exact path='/library' element={<Library />} />
           <Route exact path='/library/create' element={<Create />} />
           <Route exact path='/library/create/buttons' element={<Buttons />} />
-          <Route exact path='/library/create/tags' element={<Tags />} />
           <Route exact path='/library/create/page' element={<Page />} />
           <Route exact path='/library/create/pagelist' element={<PageList />}/>
           <Route exact path='/library/create/testing' element={<Testing />}/>

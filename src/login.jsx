@@ -11,20 +11,15 @@ import Header from './header.jsx';
 function CheckValid(i, u) {
 
   const client = generateClient();
-  //console.log(i);
-  //console.log(u);
   if (i!==""&&u!=="") { //make sure not empty button press
       const pageResults = client.graphql({ query: getAccounts, variables: {username: u},
     }).then(function(v) { // `delay` returns a promise
       //worked, pages should exist
 
-      //console.log(v.data.getAccounts);
       if (i===v.data.getAccounts.id&&u===v.data.getAccounts.username) {
         UserProfile.setName(u);
         UserProfile.setID(i);
-        //console.log("working?");
       } else {
-        //console.log("invalid passkey");
         throw "not valid passkey"; //"Expected an error object to be thrown", still works
       }
     })
@@ -46,7 +41,7 @@ function Login() {
 
       e.preventDefault();
 
-      CheckValid(key,user);
+      CheckValid(key,user); //adds to db if username not taken
       if (UserProfile.getName()!=="Login") {
         nav("../user");
       }
@@ -73,7 +68,5 @@ return (
         </form>
       </div>
     	</>
-)
-}
-
+)}
 export default Login;

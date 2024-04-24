@@ -30,7 +30,6 @@ function Play() {
         setpText(gameDetails.current[pageNum.current].text);
         setLinkText(gameDetails.current[pageNum.current].linkText);
         setLinkID(gameDetails.current[pageNum.current].linkID);
-        //console.log("found locally");
 
         if (localStorage.getItem("infoDets")!==null) {
           var gameInfo = JSON.parse(localStorage.getItem("infoDets"));
@@ -52,22 +51,12 @@ function Play() {
         const client = generateClient();
         const results = client.graphql({ query: pagesByGameID, variables: {gameID: gameID.current}})
         .then(function(v) { // `delay` returns a promise
-          //console.log(v.data.pagesByGameID.items); // Log the value once it is resolved
           var localDetails = v.data.pagesByGameID.items;
-          //console.log(localDetails);
-            //gameDetails.current = ;
-            //NEED TO SORT ORDER OF RESULTS
-
-            /*for (var i=0; i < gameDetails.current.length; i++) {
-              //need to check if local id
-
-           }*/
 
            //sort the order into page number
             localDetails.sort((a, b) => a.localID - b.localID);
             gameDetails.current = localDetails;
 
-            //console.log(gameDetails.current);
             localStorage.setItem("gameDetails",JSON.stringify(gameDetails.current));
             setpTitle(gameDetails.current[0].title);
             setpText(gameDetails.current[0].text);
@@ -93,14 +82,12 @@ function Play() {
         setLinkID(0);
       }
 
-        //localStorage.setItem("gameDetails",JSON.stringify(results));
       }
     }, []); // empty array means only once
 
     const handleLink = () => {
 
         //e.preventDefault();
-        //console.log("change page");
 
         if (gameDetails.current!==[{}]) {
           //check loaded information before changing
@@ -123,11 +110,11 @@ function Play() {
           </div>
 
           <div className='box'>
-              <h3 className='mr-2'>{pTitle}</h3>
-              <h5 className='mr-2'>{pText}</h5>
+              <h3 className='mr-2'>{pTitle}</h3> {/*Page title*/}
+              <h5 className='mr-2'>{pText}</h5> {/*page text*/}
           </div>
 
-          <form >
+          <form > {/*Button to go to next page in story*/}
             <Button variation="primary" className='btn w-100 my-2 my-sm-0 mr-1' type='button' onClick={handleLink}>{linkText}</Button>
           </form>
 

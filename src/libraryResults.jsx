@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-
-
 //works for singular item in storage
 function DisplayResult(i) {
 
     return (
       <>
-    <div className='box' onClick={() => localStorage.setItem("storyNum",i.data.localID)}> {/*set to id*/}
+    <div className='box' onClick={() => localStorage.setItem("storyNum",i.data.localID)}> {/*sets to id*/}
       <div className='card' style={{width: '100%'}}>
         <Link to={'../library/create/buttons'} style={{color: 'inherit', textDecoration: 'none'}}>
         <div className='card-body'>
@@ -36,7 +34,6 @@ const [lib, setLib] = useState([{}]);
      if (localStorage.getItem("storyDetails")!==null && valid.current!==1) {
 
        var storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
-       //console.log(storyDetails);
        setLib(storyDetails);
        valid.current = 1;
        len.current = storyDetails.length;

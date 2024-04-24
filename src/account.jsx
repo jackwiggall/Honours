@@ -16,8 +16,8 @@ return (
 
         <h3 className='text-center mb-3'>Create Account</h3>
           <div className='box'>
-              <AccountsCreateForm />
-          </div> {/*Give user the passkey on success*/}
+              <AccountsCreateForm /> {/*Auto generated form by Amplify*/}
+          </div>
 
       </div>
     	</>

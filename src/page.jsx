@@ -7,8 +7,6 @@ import Header from './header.jsx';
 function LoopedLinks(props) {
   //SHOWS ALL PAGE TITLES FOR LINKS
   const details = props.details;
-  //console.log(props.storyNum);
-  //console.log(details);
   return (
     <div>
     <select className='custom-select mt-2 mr-sm-2' onChange = {(e) => localStorage.setItem("links", e.target.value)}>
@@ -25,8 +23,6 @@ function RewriteArray(props,page) {
   //check if already in array and rewrite page if so
 
     const details = props;
-    //console.log(details);
-    //console.log(page);
     var newObj = [{}];
     var count = 0;
     details.forEach((det) =>
@@ -36,10 +32,8 @@ function RewriteArray(props,page) {
       }else {
         newObj[count]=page;
       }
-      //console.log(newObj[count]);
       count++;
     })
-    //console.log(newObj);
     if (newObj!==[{}])
     {
       return newObj;
@@ -92,7 +86,6 @@ function Page() {
            ...prev.slice(0, insertAt),
          ];
          setPrev(pageDetails.current);
-         //console.log("new page of existing list");
       } else {
         //gets current page
         const passObj = {
@@ -102,20 +95,17 @@ function Page() {
           linkText : linkText,
           linkID : Number(linkID),
         }
-        //console.log("editing page");
         pageDetails.current = RewriteArray(prev, passObj);
       }
 
       //checks if pages already exist
       if (empty.current) {
         //1st page made
-      //  console.log("resetting");
         allDetails.current[storyNum.current] = [{id: 0, title : title, text : text, linkText : linkText, linkID: linkID}];
         localStorage.setItem("pageDetails", JSON.stringify(allDetails.current));
       }else { //NEED IDENTIFIER
         localStorage.removeItem("pageDetails");
         allDetails.current[storyNum.current] = pageDetails.current;
-        //console.log("ye");
         localStorage.setItem("pageDetails", JSON.stringify(allDetails.current));
       }
       //saves story details as json string
@@ -127,10 +117,8 @@ function Page() {
   const handleDel = (e) => {
 
       e.preventDefault();
-      //console.log(prev);
       //check if page in list
       if (localStorage.getItem("pageDetails")!==undefined && pageNum.current!==-1) {
-        //console.log(`del ${pageNum.current}`);
         var newArray = prev;
 
         newArray.splice(pageNum.current, 1);
@@ -141,17 +129,14 @@ function Page() {
         }
 
         //need to cut out current page, shift all down one
-        //console.log(newArray);
-        //console.log(prev);
         if (newArray[0]!==undefined) {
           localStorage.setItem("pageDetails",JSON.stringify(newArray));
         }else {
-        //  console.log("emkpty");
           localStorage.removeItem("pageDetails");
         }
       }
 
-      nav('../library/create/pagelist'); // Redirect to buttons
+      nav('../library/create/pagelist'); // Redirect to page list
     }
 
     if (localStorage.getItem("storyNum")!==null) {
@@ -167,9 +152,7 @@ function Page() {
     //story details already exist, pull them
     allDetails.current = JSON.parse(localStorage.getItem("pageDetails"));
     var newDetails = allDetails.current[storyNum.current];
-  //  console.log(newDetails);
     if(newDetails.length===undefined) {
-      //console.log("error");
     }else {
       setPrev(newDetails);
       empty.current = false;
@@ -183,12 +166,10 @@ function Page() {
       setTitle("");
       setText("");
       setLinkText("Restart");
-      //console.log(newDetails.length); //returning 1?
       insertAt.current = newDetails.length; // add new page to end of list
     }else {
       //editing existing page
       insertAt.current = pageNum.current; //set id to new id
-      //console.log(insertAt.current);
       //set form data
       setTitle(newDetails[pageNum.current].title);
       setText(newDetails[pageNum.current].text);

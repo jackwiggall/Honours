@@ -8,9 +8,10 @@ import Header from './header.jsx';
 
 function Buttons() {
 
+//not looking at a page anymore
 localStorage.removeItem("currentPage");
 localStorage.removeItem("links");
-const nav = useNavigate();
+const nav = useNavigate(); //sets up auto navigation
 
 const handleDel= (e) => {
 //delete story from storage
@@ -22,23 +23,18 @@ const handleDel= (e) => {
       var storyDetails = JSON.parse(localStorage.getItem("storyDetails"));
       var pageDetails = JSON.parse(localStorage.getItem("pageDetails"));
 
-      //console.log(storyDetails);
       storyDetails.splice(storyNum, 1);
       pageDetails.splice(storyNum, 1);
 
       for (var i = storyNum; i < storyDetails.length; i++) {
         //change all ID's down from deleted page
         storyDetails[i].localID--;
-        //need to do same for pages
       }
-      //need to cut out current page, shift all down one
-      //console.log(storyDetails);
-      //console.log(prev);
       if (storyDetails[0]!==undefined) {
         localStorage.setItem("storyDetails",JSON.stringify(storyDetails));
         localStorage.setItem("pageDetails",JSON.stringify(pageDetails));
       }else {
-        //console.log("emkpty");
+        //no stories saved
         localStorage.removeItem("storyDetails");
         localStorage.removeItem("pageDetails");
       }
@@ -64,11 +60,7 @@ return (
             <Link to={"../library/create/pagelist"}><button className='btn w-100' type='button'>Page List</button></Link>
         </div>
 
-        {/*}<div className='box'>
-            <Link to={"../library/create/tags"}><button className='btn w-100' type='button'>Tags (not finished)</button></Link>
-        </div>*/}
-
-        <p>Games are saved locally until published.</p>
+        <p>Stories are saved locally until published. Testing recommended.</p>
         <Link to={"../library/create/testing"}><Button variation="primary" className='btn w-100 my-2 my-sm-1 mr-1' type='submit' >Test</Button></Link> {/*Not implemented*/}
         <Publish />
 

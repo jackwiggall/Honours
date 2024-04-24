@@ -51,8 +51,6 @@ function Tags() {
     var newDetails = JSON.parse(localStorage.getItem("tagList"));
 
     //set form data
-    //setTags(newDetails);
-    console.log(newDetails);
 
     setScifi(newDetails.scifi);
     setFantasy(newDetails.fantasy);

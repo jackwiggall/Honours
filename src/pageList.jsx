@@ -15,11 +15,9 @@ function Top() {
 }
 
 function LoopedPages(props) {
-  //NEED TO ADD KEY
   //SHOWS ALL PAGES
   var storyNum = localStorage.getItem("storyNum");
   const details = props.details;
-  //console.log(details);
   return (
     <div>
     {details.map((det) => (
@@ -41,15 +39,13 @@ function LoopedPages(props) {
 function DisplayPages() {
   var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
   var storyNum = localStorage.getItem("storyNum");
-  //console.log(`Title: ${newDetails.ptitle}`);
   newDetails=newDetails[storyNum];
   localStorage.removeItem("currentPage");
   localStorage.removeItem("links");
-  //console.log(newDetails[storyNum]);
   return (
     <>
     <div className='bground'>
-      <Top />
+      <Top /> {/*Header and new page button*/}
       <LoopedPages details={newDetails} />
 
     </div>
@@ -58,11 +54,10 @@ function DisplayPages() {
 }
 
 function DisplayNone() {
-  //console.log("found none");
   return (
     <>
   <div className='bground'>
-    <Top />
+    <Top /> {/*Header and new page button*/}
 
     <h3 className='text-center mb-5'>Your page list is empty!</h3>
     </div>
@@ -78,16 +73,15 @@ function PageList() {
     var newDetails = JSON.parse(localStorage.getItem("pageDetails"));
     var storyNum = localStorage.getItem("storyNum");
     if (newDetails[storyNum].length===undefined) {
-      //console.log("err");
       return (
       <>
-        <DisplayNone />
+        <DisplayNone /> {/*No pages exist for story yet*/}
       </>
       )
     }else {
       return (
       <>
-        <DisplayPages />
+        <DisplayPages /> {/*Displays pages in story*/}
       </>
       )
     }
@@ -95,7 +89,7 @@ function PageList() {
   else {
     return (
     <>
-      <DisplayNone />
+      <DisplayNone /> {/*No pages exist for story yet*/}
     </>
     )
   }
